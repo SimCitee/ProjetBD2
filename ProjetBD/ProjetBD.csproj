@@ -85,6 +85,9 @@
     <EmbeddedResource Include="Views\FormAddEvent.resx">
       <DependentUpon>FormAddEvent.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormAddPlayer.resx">
+      <DependentUpon>FormAddPlayer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
