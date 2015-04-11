@@ -45,10 +45,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainWindow.cs">
+    <Compile Include="Collections\BoardGameCollection.cs" />
+    <Compile Include="Collections\EventCollection.cs" />
+    <Compile Include="Collections\PlayerCollection.cs" />
+    <Compile Include="Database\DatabaseHelper.cs" />
+    <Compile Include="Views\FormAddBoardgame.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainWindow.Designer.cs">
+    <Compile Include="Views\FormAddBoardgame.Designer.cs">
+      <DependentUpon>FormAddBoardgame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormAddEvent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormAddEvent.Designer.cs">
+      <DependentUpon>FormAddEvent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormAddPlayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormAddPlayer.Designer.cs">
+      <DependentUpon>FormAddPlayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\BoardGame.cs" />
@@ -56,7 +78,13 @@
     <Compile Include="Models\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="MainWindow.resx">
+    <EmbeddedResource Include="Views\FormAddBoardgame.resx">
+      <DependentUpon>FormAddBoardgame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormAddEvent.resx">
+      <DependentUpon>FormAddEvent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
