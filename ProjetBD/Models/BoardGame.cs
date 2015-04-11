@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ProjetBD.Models {
-    class BoardGame {
+    class BoardGame : ModelBase {
         private Int32 _id;
         private String _name;
         private Int32 _minimumPlayerNumber;
@@ -58,6 +58,22 @@ namespace ProjetBD.Models {
         public Int32 AverageGameTime {
             get { return _averageGameTime; }
             set { _averageGameTime = value; }
+        }
+
+        public override void Insert(Database.DatabaseHelper dbHelper) {
+            throw new NotImplementedException();
+        }
+
+        public override void Update(Database.DatabaseHelper dbHelper) {
+            throw new NotImplementedException();
+        }
+
+        public override void Delete(Database.DatabaseHelper dbHelper) {
+            throw new NotImplementedException();
+        }
+
+        public override void Lock(Database.DatabaseHelper dbHelper) {
+            throw new NotImplementedException();
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ProjetBD.Models {
-    class Event {
+    class Event : ModelBase {
         private Int32 _id;
         private String _name;
         private String _description;
@@ -62,6 +62,22 @@ namespace ProjetBD.Models {
 
                 return _boardGameList;
             }
+        }
+
+        public override void Insert(Database.DatabaseHelper dbHelper) {
+            throw new NotImplementedException();
+        }
+
+        public override void Update(Database.DatabaseHelper dbHelper) {
+            throw new NotImplementedException();
+        }
+
+        public override void Delete(Database.DatabaseHelper dbHelper) {
+            throw new NotImplementedException();
+        }
+
+        public override void Lock(Database.DatabaseHelper dbHelper) {
+            throw new NotImplementedException();
         }
     }
 }

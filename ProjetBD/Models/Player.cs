@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ProjetBD.Models {
-    class Player {
+    class Player : ModelBase {
         private Int32 _id;
         private String _firstName;
         private String _lastName;
@@ -34,6 +34,22 @@ namespace ProjetBD.Models {
         public String LastName {
             get { return _lastName; }
             set { _lastName = value; }
+        }
+
+        public override void Insert(Database.DatabaseHelper dbHelper) {
+            throw new NotImplementedException();
+        }
+
+        public override void Update(Database.DatabaseHelper dbHelper) {
+            throw new NotImplementedException();
+        }
+
+        public override void Delete(Database.DatabaseHelper dbHelper) {
+            throw new NotImplementedException();
+        }
+
+        public override void Lock(Database.DatabaseHelper dbHelper) {
+            throw new NotImplementedException();
         }
     }
 }

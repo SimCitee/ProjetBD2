@@ -49,6 +49,7 @@
     <Compile Include="Collections\EventCollection.cs" />
     <Compile Include="Collections\PlayerCollection.cs" />
     <Compile Include="Database\DatabaseHelper.cs" />
+    <Compile Include="Models\ModelBase.cs" />
     <Compile Include="Views\FormAddBoardgame.cs">
       <SubType>Form</SubType>
     </Compile>
