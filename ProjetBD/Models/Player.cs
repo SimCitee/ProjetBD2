@@ -15,10 +15,9 @@ namespace ProjetBD.Models {
             _lastName = lastName;
         }
 
-        public Player(Int32 id, String firstName, String lastName) {
+        public Player(String firstName, String lastName, Int32 id)
+            : this(firstName, lastName) {
             _id = id;
-            _firstName = firstName;
-            _lastName = lastName;
         }
 
         public Int32 Id {

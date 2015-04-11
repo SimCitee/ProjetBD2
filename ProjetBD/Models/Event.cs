@@ -19,11 +19,9 @@ namespace ProjetBD.Models {
             _date = date;
         }
 
-        public Event(Int32 id, String name, String description, DateTime date) {
+        public Event(String name, String description, DateTime date, Int32 id)
+            : this(name, description, date) {
             _id = id;
-            _name = name;
-            _description = description;
-            _date = date;
         }
 
         public Int32 Id {

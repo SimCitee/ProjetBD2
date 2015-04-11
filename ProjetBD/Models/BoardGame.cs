@@ -21,13 +21,9 @@ namespace ProjetBD.Models {
             _averageGameTime = averageGameTime;
         }
 
-        public BoardGame(Int32 id, String name, Int32 minimumPlayerNUmber, Int32 maximumPlayerNumber, Int32 minimumAge, Int32 averageGameTime) {
+        public BoardGame(String name, Int32 minimumPlayerNumber, Int32 maximumPlayerNumber, Int32 minimumAge, Int32 averageGameTime, Int32 id)
+            : this(name, minimumPlayerNumber, maximumPlayerNumber, minimumAge, averageGameTime) {
             _id = id;
-            _name = name;
-            _minimumPlayerNumber = minimumPlayerNUmber;
-            _maximumPlayerNumber = maximumPlayerNumber;
-            _minimumAge = minimumAge;
-            _averageGameTime = averageGameTime;
         }
 
         public Int32 Id {
