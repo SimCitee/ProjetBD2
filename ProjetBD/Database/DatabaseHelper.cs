@@ -159,7 +159,7 @@ namespace ProjetBD.Database {
         public void LogTransaction(String logAction, String commandString) {
             OracleCommand command = Connection.CreateCommand();
             commandString = commandString.Replace("'", "\'");
-            command.CommandText = String.Format("INSERT INTO Logs(Action, Command) VALUES('{0}','{1}')", logAction, commandString);
+            command.CommandText = String.Format("INSERT INTO LOGS(ACTION, COMMAND) VALUES('{0}','{1}')", logAction, commandString);
             command.ExecuteNonQuery();
         }
         #endregion
