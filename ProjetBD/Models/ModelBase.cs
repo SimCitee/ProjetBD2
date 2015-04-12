@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ProjetBD.Database;
 
 namespace ProjetBD.Models {
-    abstract class ModelBase {
+    public abstract class ModelBase {
         public abstract void Insert(DatabaseHelper dbHelper);
         public abstract void Update(DatabaseHelper dbHelper);
         public abstract void Delete(DatabaseHelper dbHelper);

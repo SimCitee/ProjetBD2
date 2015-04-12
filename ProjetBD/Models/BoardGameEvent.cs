@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ProjetBD.Models {
-    class Event : ModelBase {
+    public class BoardGameEvent : ModelBase {
         private Int32 _id;
         private String _name;
         private String _description;
@@ -13,13 +13,16 @@ namespace ProjetBD.Models {
         private List<Player> _playerList;
         private List<BoardGame> _boardGameList;
 
-        public Event(String name, String description, DateTime date) {
+        public BoardGameEvent() {
+        }
+
+        public BoardGameEvent(String name, String description, DateTime date) {
             _name = name;
             _description = description;
             _date = date;
         }
 
-        public Event(String name, String description, DateTime date, Int32 id)
+        public BoardGameEvent(String name, String description, DateTime date, Int32 id)
             : this(name, description, date) {
             _id = id;
         }

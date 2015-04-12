@@ -155,9 +155,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(217, 64);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(125, 13);
+            this.label5.Size = new System.Drawing.Size(130, 13);
             this.label5.TabIndex = 8;
-            this.label5.Text = "Durée moyenne (minute):";
+            this.label5.Text = "Durée moyenne (minutes):";
             // 
             // nudNewBGTimeAvg
             // 
@@ -189,6 +189,7 @@
             this.btnAccept.TabIndex = 11;
             this.btnAccept.Text = "&Accepter";
             this.btnAccept.UseVisualStyleBackColor = true;
+            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
             // btnCancel
             // 
@@ -198,6 +199,7 @@
             this.btnCancel.TabIndex = 12;
             this.btnCancel.Text = "&Annuler";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // FormAddBoardgame
             // 

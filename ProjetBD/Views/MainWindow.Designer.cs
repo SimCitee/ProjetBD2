@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.eventsTabPage = new System.Windows.Forms.TabPage();
             this.btnAddEvent = new System.Windows.Forms.Button();
             this.btnDeleteEvent = new System.Windows.Forms.Button();
             this.eventsDataGridView = new System.Windows.Forms.DataGridView();
@@ -38,23 +38,17 @@
             this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.baseGame = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.playersTabPage = new System.Windows.Forms.TabPage();
             this.btnAddPlayer = new System.Windows.Forms.Button();
             this.btnDeletePlayer = new System.Windows.Forms.Button();
             this.playersDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.boardGamesTabPage = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.gamesDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.boardgame_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.minimumPlayerNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maximumPlayerNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.minimumAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.averageGameTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.boardGamesDataGridView = new System.Windows.Forms.DataGridView();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,45 +63,51 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.boardgame_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.minimumPlayerNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maximumPlayerNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.minimumAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.averageGameTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabControl.SuspendLayout();
+            this.eventsTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eventsDataGridView)).BeginInit();
-            this.tabPage2.SuspendLayout();
+            this.playersTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.playersDataGridView)).BeginInit();
-            this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gamesDataGridView)).BeginInit();
+            this.boardGamesTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.boardGamesDataGridView)).BeginInit();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventPlayersDataGridView)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // tabControl
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage5);
-            this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(936, 550);
-            this.tabControl1.TabIndex = 0;
+            this.tabControl.Controls.Add(this.eventsTabPage);
+            this.tabControl.Controls.Add(this.playersTabPage);
+            this.tabControl.Controls.Add(this.boardGamesTabPage);
+            this.tabControl.Controls.Add(this.tabPage5);
+            this.tabControl.Controls.Add(this.tabPage4);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(0, 0);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(936, 550);
+            this.tabControl.TabIndex = 0;
             // 
-            // tabPage1
+            // eventsTabPage
             // 
-            this.tabPage1.Controls.Add(this.btnAddEvent);
-            this.tabPage1.Controls.Add(this.btnDeleteEvent);
-            this.tabPage1.Controls.Add(this.eventsDataGridView);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(928, 524);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Événements";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.eventsTabPage.Controls.Add(this.btnAddEvent);
+            this.eventsTabPage.Controls.Add(this.btnDeleteEvent);
+            this.eventsTabPage.Controls.Add(this.eventsDataGridView);
+            this.eventsTabPage.Location = new System.Drawing.Point(4, 22);
+            this.eventsTabPage.Name = "eventsTabPage";
+            this.eventsTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.eventsTabPage.Size = new System.Drawing.Size(928, 524);
+            this.eventsTabPage.TabIndex = 0;
+            this.eventsTabPage.Text = "Événements";
+            this.eventsTabPage.UseVisualStyleBackColor = true;
             // 
             // btnAddEvent
             // 
@@ -117,6 +117,7 @@
             this.btnAddEvent.TabIndex = 2;
             this.btnAddEvent.Text = "&Ajouter";
             this.btnAddEvent.UseVisualStyleBackColor = true;
+            this.btnAddEvent.Click += new System.EventHandler(this.btnAddEvent_Click);
             // 
             // btnDeleteEvent
             // 
@@ -129,6 +130,7 @@
             // 
             // eventsDataGridView
             // 
+            this.eventsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.eventsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.eventsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
@@ -169,18 +171,18 @@
             this.baseGame.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.baseGame.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // tabPage2
+            // playersTabPage
             // 
-            this.tabPage2.Controls.Add(this.btnAddPlayer);
-            this.tabPage2.Controls.Add(this.btnDeletePlayer);
-            this.tabPage2.Controls.Add(this.playersDataGridView);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(928, 524);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Joueurs";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.playersTabPage.Controls.Add(this.btnAddPlayer);
+            this.playersTabPage.Controls.Add(this.btnDeletePlayer);
+            this.playersTabPage.Controls.Add(this.playersDataGridView);
+            this.playersTabPage.Location = new System.Drawing.Point(4, 22);
+            this.playersTabPage.Name = "playersTabPage";
+            this.playersTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.playersTabPage.Size = new System.Drawing.Size(928, 524);
+            this.playersTabPage.TabIndex = 1;
+            this.playersTabPage.Text = "Joueurs";
+            this.playersTabPage.UseVisualStyleBackColor = true;
             // 
             // btnAddPlayer
             // 
@@ -190,6 +192,7 @@
             this.btnAddPlayer.TabIndex = 4;
             this.btnAddPlayer.Text = "&Ajouter";
             this.btnAddPlayer.UseVisualStyleBackColor = true;
+            this.btnAddPlayer.Click += new System.EventHandler(this.btnAddPlayer_Click);
             // 
             // btnDeletePlayer
             // 
@@ -202,6 +205,7 @@
             // 
             // playersDataGridView
             // 
+            this.playersDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.playersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.playersDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -228,17 +232,17 @@
             this.lastname.HeaderText = "Nom de famille";
             this.lastname.Name = "lastname";
             // 
-            // tabPage3
+            // boardGamesTabPage
             // 
-            this.tabPage3.Controls.Add(this.button1);
-            this.tabPage3.Controls.Add(this.button2);
-            this.tabPage3.Controls.Add(this.gamesDataGridView);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(928, 524);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Jeux";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.boardGamesTabPage.Controls.Add(this.button1);
+            this.boardGamesTabPage.Controls.Add(this.button2);
+            this.boardGamesTabPage.Controls.Add(this.boardGamesDataGridView);
+            this.boardGamesTabPage.Location = new System.Drawing.Point(4, 22);
+            this.boardGamesTabPage.Name = "boardGamesTabPage";
+            this.boardGamesTabPage.Size = new System.Drawing.Size(928, 524);
+            this.boardGamesTabPage.TabIndex = 2;
+            this.boardGamesTabPage.Text = "Jeux";
+            this.boardGamesTabPage.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -248,6 +252,7 @@
             this.button1.TabIndex = 6;
             this.button1.Text = "&Ajouter";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -258,51 +263,21 @@
             this.button2.Text = "&Supprimer";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // gamesDataGridView
+            // boardGamesDataGridView
             // 
-            this.gamesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gamesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.boardGamesDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.boardGamesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.boardGamesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn2,
             this.boardgame_name,
             this.minimumPlayerNumber,
             this.maximumPlayerNumber,
             this.minimumAge,
             this.averageGameTime});
-            this.gamesDataGridView.Location = new System.Drawing.Point(6, 6);
-            this.gamesDataGridView.Name = "gamesDataGridView";
-            this.gamesDataGridView.Size = new System.Drawing.Size(671, 221);
-            this.gamesDataGridView.TabIndex = 2;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Identifiant";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Visible = false;
-            // 
-            // boardgame_name
-            // 
-            this.boardgame_name.HeaderText = "Nom";
-            this.boardgame_name.Name = "boardgame_name";
-            // 
-            // minimumPlayerNumber
-            // 
-            this.minimumPlayerNumber.HeaderText = "Nombre minimum de joueurs";
-            this.minimumPlayerNumber.Name = "minimumPlayerNumber";
-            // 
-            // maximumPlayerNumber
-            // 
-            this.maximumPlayerNumber.HeaderText = "Nombre maximum de joueurs";
-            this.maximumPlayerNumber.Name = "maximumPlayerNumber";
-            // 
-            // minimumAge
-            // 
-            this.minimumAge.HeaderText = "Âge minimum";
-            this.minimumAge.Name = "minimumAge";
-            // 
-            // averageGameTime
-            // 
-            this.averageGameTime.HeaderText = "Durée moyenne (heures)";
-            this.averageGameTime.Name = "averageGameTime";
+            this.boardGamesDataGridView.Location = new System.Drawing.Point(6, 6);
+            this.boardGamesDataGridView.Name = "boardGamesDataGridView";
+            this.boardGamesDataGridView.Size = new System.Drawing.Size(671, 221);
+            this.boardGamesDataGridView.TabIndex = 2;
             // 
             // tabPage5
             // 
@@ -414,22 +389,54 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(84, 17);
             this.toolStripStatusLabel1.Text = "EtatConnexion";
             // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Identifiant";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Visible = false;
+            // 
+            // boardgame_name
+            // 
+            this.boardgame_name.HeaderText = "Nom";
+            this.boardgame_name.Name = "boardgame_name";
+            // 
+            // minimumPlayerNumber
+            // 
+            this.minimumPlayerNumber.HeaderText = "Nombre minimum de joueurs";
+            this.minimumPlayerNumber.Name = "minimumPlayerNumber";
+            // 
+            // maximumPlayerNumber
+            // 
+            this.maximumPlayerNumber.HeaderText = "Nombre maximum de joueurs";
+            this.maximumPlayerNumber.Name = "maximumPlayerNumber";
+            // 
+            // minimumAge
+            // 
+            this.minimumAge.HeaderText = "Âge minimum";
+            this.minimumAge.Name = "minimumAge";
+            // 
+            // averageGameTime
+            // 
+            this.averageGameTime.HeaderText = "Durée moyenne (minutes)";
+            this.averageGameTime.Name = "averageGameTime";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(936, 550);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.tabControl);
             this.Name = "MainWindow";
             this.Text = "FourDice";
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.MainWindow_Load);
+            this.tabControl.ResumeLayout(false);
+            this.eventsTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.eventsDataGridView)).EndInit();
-            this.tabPage2.ResumeLayout(false);
+            this.playersTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.playersDataGridView)).EndInit();
-            this.tabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gamesDataGridView)).EndInit();
+            this.boardGamesTabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.boardGamesDataGridView)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -443,10 +450,10 @@
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabPage eventsTabPage;
+        private System.Windows.Forms.TabPage playersTabPage;
+        private System.Windows.Forms.TabPage boardGamesTabPage;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Button btnAddEvent;
         private System.Windows.Forms.Button btnDeleteEvent;
@@ -467,13 +474,7 @@
         private System.Windows.Forms.Button btnDeletePlayer;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.DataGridView gamesDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn boardgame_name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn minimumPlayerNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn maximumPlayerNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn minimumAge;
-        private System.Windows.Forms.DataGridViewTextBoxColumn averageGameTime;
+        private System.Windows.Forms.DataGridView boardGamesDataGridView;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
@@ -484,6 +485,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn eventPlayerLastname;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn boardgame_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn minimumPlayerNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn maximumPlayerNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn minimumAge;
+        private System.Windows.Forms.DataGridViewTextBoxColumn averageGameTime;
 
     }
 }

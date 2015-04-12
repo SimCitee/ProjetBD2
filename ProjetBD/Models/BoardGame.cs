@@ -5,13 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ProjetBD.Models {
-    class BoardGame : ModelBase {
+    public class BoardGame : ModelBase {
         private Int32 _id;
         private String _name;
         private Int32 _minimumPlayerNumber;
         private Int32 _maximumPlayerNumber;
         private Int32 _minimumAge;
         private Int32 _averageGameTime;
+
+        public BoardGame() {
+        }
 
         public BoardGame(String name, Int32 minimumPlayerNUmber, Int32 maximumPlayerNumber, Int32 minimumAge, Int32 averageGameTime) {
             _name = name;

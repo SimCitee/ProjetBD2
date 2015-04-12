@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.OracleClient;
 using ProjetBD.Models;
 
 namespace ProjetBD.Collections {
@@ -19,12 +20,40 @@ namespace ProjetBD.Collections {
             return _instance;
         }
 
-        public List<Player> PlayerList {
+        public List<Player> Players {
             get {
-                if (_playerList == null)
+                if (_playerList == null) {
                     _playerList = new List<Player>();
+                }
 
                 return _playerList;
+            }
+        }
+
+        public void LoadPlayersFromDatabase(OracleConnection connection) {
+            try {
+                OracleCommand command = connection.CreateCommand();
+                command.CommandText = "SELECT Players.Id, Players.Firstname, Players.Lastname FROM Players";
+                
+                connection.Open();
+
+                OracleDataReader reader = command.ExecuteReader();
+
+                while (reader.Read()) {
+                    Player player = new Player(reader["Firstname"].ToString(), reader["Lastname"].ToString(), (Int32)reader["Id"]);
+                    Players.Add(player);
+                }
+            }
+            catch (OracleException e) {
+                throw e;
+            }
+            catch (Exception e) {
+                throw e;
+            }
+            finally {
+                if (connection != null) {
+                    connection.Close();
+                }
             }
         }
     }

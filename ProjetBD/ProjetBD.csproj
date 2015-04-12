@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collections\BoardGameCollection.cs" />
-    <Compile Include="Collections\EventCollection.cs" />
+    <Compile Include="Collections\BoardGameEventCollection.cs" />
     <Compile Include="Collections\PlayerCollection.cs" />
     <Compile Include="Database\DatabaseHelper.cs" />
     <Compile Include="Models\ModelBase.cs" />
@@ -75,7 +75,7 @@
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\BoardGame.cs" />
-    <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\BoardGameEvent.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
