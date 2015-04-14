@@ -16,18 +16,18 @@ namespace ProjetBD
 {
     public partial class MainWindow : Form
     {
-        private const String DBCONFIG = "";
+        private const String DBCONFIG = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=NEPTUNE.UQTR.CA)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SID=COURSBD))); User Id=SMI1002_39;Password=53uzct45;";
         DatabaseHelper dbHelper;
 
         public MainWindow()
         {
             InitializeComponent();
 
-         /*   dbHelper = new DatabaseHelper(DBCONFIG);
+            dbHelper = new DatabaseHelper(DBCONFIG);
 
             BoardGameEventCollection.Instance().LoadBoardEventsFromDatabase(dbHelper.Connection);
             BoardGameCollection.Instance().LoadBoardGamesFromDatabase(dbHelper.Connection);
-            PlayerCollection.Instance().LoadPlayersFromDatabase(dbHelper.Connection);*/
+            PlayerCollection.Instance().LoadPlayersFromDatabase(dbHelper.Connection);
         }
 
         private void MainWindow_Load(object sender, EventArgs e) {
