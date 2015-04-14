@@ -79,6 +79,12 @@ namespace ProjetBD.Models {
             }
         }
 
+        public String EventNameDate {
+            get {
+                return _name + " " + _date.ToString("dd-MM-yy");
+            }
+        }
+
         public BoardGameEvent Memento {
             get {
                 if (_mementoBoardGameEvent == null) {

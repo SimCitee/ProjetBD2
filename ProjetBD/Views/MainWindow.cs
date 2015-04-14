@@ -22,8 +22,7 @@ namespace ProjetBD
         DatabaseHelper dbHelper;
 
 
-        public MainWindow()
-        {
+        public MainWindow() {
             InitializeComponent();
 
             dbHelper = new DatabaseHelper(DBCONFIG);
@@ -41,20 +40,6 @@ namespace ProjetBD
             boardGamesDataGridView.Width = boardGamesTabPage.Width - boardGamesDataGridView.Location.X;
             boardGamesDataGridView.Height = boardGamesTabPage.Height - 80;
 
-           /* cCoursDepartement.DataSource = dataStore.Departements;
-            cCoursDepartement.DisplayMember = "Nom";
-            cCoursDepartement.ValueMember = "Self";
-            cCoursEnseignant.DataSource = dataStore.Enseignants;
-            cCoursEnseignant.DisplayMember = "NomComplet";
-            cCoursEnseignant.ValueMember = "Self";
-
-            cInscriptionCours.DataSource = dataStore.LesCours;
-            cInscriptionCours.DisplayMember = "Sigle";
-            cInscriptionCours.ValueMember = "Self";
-            cInscriptionEtudiant.DataSource = dataStore.Etudiants;
-            cInscriptionEtudiant.DisplayMember = "NomComplet";
-            cInscriptionEtudiant.ValueMember = "Self";*/
-
             eventsDataGridView.AutoGenerateColumns = false;
             boardGamesDataGridView.AutoGenerateColumns = false;
             playersDataGridView.AutoGenerateColumns = false;
@@ -62,6 +47,10 @@ namespace ProjetBD
             eventsDataGridView.DataSource = BoardGameEventCollection.Instance().BoardgameEvents;
             boardGamesDataGridView.DataSource = BoardGameCollection.Instance().BoardGames;
             playersDataGridView.DataSource = PlayerCollection.Instance().Players;
+
+            eventComboBox.DataSource = new BindingSource(BoardGameEventCollection.Instance().BoardgameEvents, null);
+            eventComboBox.DisplayMember = "EventNameDate";
+            eventComboBox.ValueMember = "Id";
         }
 
         private void btnAddEvent_Click(object sender, EventArgs e) {
@@ -122,22 +111,8 @@ namespace ProjetBD
             }
         }
 
-        private void btnAddPlayer_Click(object sender, EventArgs e) {
-            Player player = new Player();
-            FormAddPlayer form = new FormAddPlayer(player);
-
-            if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
-                dbHelper.Insert(player);
-            }
-        }
-
-        private void button1_Click(object sender, EventArgs e) {
-            BoardGame boardGame = new BoardGame();
-            FormAddBoardgame form = new FormAddBoardgame(boardGame);
-
-            if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
-                dbHelper.Insert(boardGame);
-            }
+        private void eventsDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e) {
+            _dateTimePicker.Visible = false;
         }
 
         private void RefreshEventsGrid() {
@@ -145,8 +120,100 @@ namespace ProjetBD
             eventsDataGridView.DataSource = BoardGameEventCollection.Instance().BoardgameEvents;
         }
 
-        private void eventsDataGridView_CellClick(object sender, DataGridViewCellEventArgs e) {
-            
+        private void btnAddPlayer_Click(object sender, EventArgs e) {
+            Player player = new Player();
+            FormAddPlayer form = new FormAddPlayer(player);
+
+            if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+                dbHelper.Insert(player);
+                RefreshPlayersGrid();
+            }
+        }
+
+        private void btnDeletePlayer_Click(object sender, EventArgs e) {
+            if (playersDataGridView.SelectedRows.Count == 1) {
+                ModelBase model = (ModelBase)playersDataGridView.SelectedRows[0].DataBoundItem;
+                dbHelper.Delete(model);
+                RefreshPlayersGrid();
+            }
+        }
+
+        private void playersDataGridView_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e) {
+            if (e.RowIndex >= 0) {
+                ModelBase model = (ModelBase)playersDataGridView.Rows[e.RowIndex].DataBoundItem;
+
+                try {
+                    dbHelper.LockBeforeUpdate(model);
+                }
+                catch (OracleException ex) {
+                    dbHelper.CancelUpdate();
+                }
+            }
+        }
+
+        private void playersDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e) {
+            if (e.RowIndex > -1) {
+                try {
+                    ModelBase model = (ModelBase)playersDataGridView.Rows[e.RowIndex].DataBoundItem;
+                    dbHelper.PushUpdate(model);
+                }
+                catch (OracleException ex) {
+                    dbHelper.CancelUpdate();
+                }
+            }
+        }
+
+        private void RefreshPlayersGrid() {
+            playersDataGridView.DataSource = null;
+            playersDataGridView.DataSource = PlayerCollection.Instance().Players;
+        }
+
+        private void btnAddBoardGame_Click(object sender, EventArgs e) {
+            BoardGame boardGame = new BoardGame();
+            FormAddBoardgame form = new FormAddBoardgame(boardGame);
+
+            if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+                dbHelper.Insert(boardGame);
+                RefreshBoardGamesGrid();
+            }
+        }
+
+        private void btnDeleteBoardGame_Click(object sender, EventArgs e) {
+            if (boardGamesDataGridView.SelectedRows.Count == 1) {
+                ModelBase model = (ModelBase)boardGamesDataGridView.SelectedRows[0].DataBoundItem;
+                dbHelper.Delete(model);
+                RefreshBoardGamesGrid();
+            }
+        }
+
+        private void boardGamesDataGridView_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e) {
+            if (e.RowIndex >= 0) {
+                ModelBase model = (ModelBase)boardGamesDataGridView.Rows[e.RowIndex].DataBoundItem;
+
+                try {
+                    dbHelper.LockBeforeUpdate(model);
+                }
+                catch (OracleException ex) {
+                    dbHelper.CancelUpdate();
+                }
+            }
+        }
+
+        private void boardGamesDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e) {
+            if (e.RowIndex > -1) {
+                try {
+                    ModelBase model = (ModelBase)boardGamesDataGridView.Rows[e.RowIndex].DataBoundItem;
+                    dbHelper.PushUpdate(model);
+                }
+                catch (OracleException ex) {
+                    dbHelper.CancelUpdate();
+                }
+            }
+        }
+
+        private void RefreshBoardGamesGrid() {
+            boardGamesDataGridView.DataSource = null;
+            boardGamesDataGridView.DataSource = BoardGameCollection.Instance().BoardGames;
         }
 
         private void _dateTimePicker_CloseUp(object sender, EventArgs e) {
@@ -157,8 +224,16 @@ namespace ProjetBD
             eventsDataGridView.CurrentCell.Value = _dateTimePicker.Text.ToString();
         }
 
-        private void eventsDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e) {
-            _dateTimePicker.Visible = false;
-        } 
+        private void eventComboBox_SelectedValueChanged(object sender, EventArgs e) {
+            BoardGameEvent res = eventComboBox.SelectedItem as BoardGameEvent;
+        }
+
+        private void eventPlayersAddBtn_Click(object sender, EventArgs e) {
+
+        }
+
+        private void eventPlayersRemoveBtn_Click(object sender, EventArgs e) {
+            
+        }
     }
 }

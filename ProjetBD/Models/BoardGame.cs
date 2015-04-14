@@ -4,14 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Oracle.DataAccess.Client;
+using Oracle.DataAccess.Types;
 using ProjetBD.Database;
 using ProjetBD.Collections;
+using System.Data;
 
 namespace ProjetBD.Models {
     public class BoardGame : ModelBase {
 
         private const String QRY_SELECT = "SELECT BOARDGAMES.ID, BOARDGAMES.NAME, BOARDGAMES.MINIMUM_PLAYER_NUMBER, BOARDGAMES.MAXIMUM_PLAYER_NUMBER, BOARDGAMES.MINIMUM_AGE, BOARDGAMES.AVERAGE_GAME_TIME FROM BOARDGAMES WHERE BOARDGAMES.ID = {0}";
-        private const String QRY_INSERT = "INSERT INTO BOARDGAMES(NAME, MINIMUM_PLAYER_NUMBER, MAXIMUM_PLAYER_NUMBER, MINIMUM_AGE, AVERAGE_GAME_TIME) VALUES('{0}', '{1}', '{2}', '{3}', '{4}')";
+        private const String QRY_INSERT = "INSERT INTO BOARDGAMES(NAME, MINIMUM_PLAYER_NUMBER, MAXIMUM_PLAYER_NUMBER, MINIMUM_AGE, AVERAGE_GAME_TIME) VALUES('{0}', '{1}', '{2}', '{3}', '{4}') RETURNING ID INTO :output";
         private const String QRY_FULL_INSERT = "INSERT INTO BOARDGAMES(ID, NAME, MINIMUM_PLAYER_NUMBER, MAXIMUM_PLAYER_NUMBER, MINIMUM_AGE, AVERAGE_GAME_TIME) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')";
         private const String QRY_UPDATE = "UPDATE BOARDGAMES SET NAME = '{0}', MINIMUM_PLAYER_NUMBER = '{1}', MAXIMUM_PLAYER_NUMBER = '{2}', MINIMUM_AGE = '{3}', AVERAGE_GAME_TIME = '{4}' WHERE Id = '{5}'";
         private const String QRY_DELETE = "DELETE FROM BOARDGAMES WHERE ID = '{0}'";
@@ -81,16 +83,20 @@ namespace ProjetBD.Models {
             }
         }
 
-        public override void Insert(Database.DatabaseHelper dbHelper) {
+        public override void Insert(DatabaseHelper dbHelper) {
             try {
+                OracleDecimal output;
                 OracleCommand command = dbHelper.Connection.CreateCommand();
                 command.CommandText = QRY_LOCK;
                 command.ExecuteNonQuery();
 
                 command.CommandText = String.Format(QRY_INSERT, Name, MinimumPlayerNumber, MaximumPlayerNumber, MinimumAge, AverageGameTime);
+                command.Parameters.Add("output", OracleDbType.Decimal, ParameterDirection.ReturnValue);
                 command.ExecuteNonQuery();
 
-                dbHelper.LogTransaction(LogActions.Undo, String.Format(QRY_DELETE, Id));
+                output = (OracleDecimal)command.Parameters["output"].Value;
+
+                dbHelper.LogTransaction(LogActions.Undo, String.Format(QRY_DELETE, output.ToInt32()));
                 dbHelper.LogTransaction(LogActions.Redo, String.Format(QRY_INSERT, Name, MinimumPlayerNumber, MaximumPlayerNumber, MinimumAge, AverageGameTime));
 
                 dbHelper.Transaction.Commit();
@@ -102,7 +108,7 @@ namespace ProjetBD.Models {
             }
         }
 
-        public override void Update(Database.DatabaseHelper dbHelper) {
+        public override void Update(DatabaseHelper dbHelper) {
             try {
                 OracleCommand command = dbHelper.Connection.CreateCommand();
                 command.CommandText = String.Format(QRY_UPDATE, Name, MinimumPlayerNumber, MaximumPlayerNumber, MinimumAge, AverageGameTime, Id);
@@ -123,7 +129,7 @@ namespace ProjetBD.Models {
             }
         }
 
-        public override void Delete(Database.DatabaseHelper dbHelper) {
+        public override void Delete(DatabaseHelper dbHelper) {
             try {
                 OracleCommand command = dbHelper.Connection.CreateCommand();
                 command.CommandText = QRY_LOCK;
@@ -149,7 +155,7 @@ namespace ProjetBD.Models {
             }
         }
 
-        public override void Lock(Database.DatabaseHelper dbHelper) {
+        public override void Lock(DatabaseHelper dbHelper) {
             try {
                 OracleCommand command = dbHelper.Connection.CreateCommand();
                 command.CommandText = String.Format(QRY_SELECT + " FOR UPDATE", this.Id);

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.OracleClient;
+using Oracle.DataAccess.Client;
+using Oracle.DataAccess.Types;
 using ProjetBD.Database;
 using ProjetBD.Collections;
+using System.Data;
 
 namespace ProjetBD.Models {
     public class Player : ModelBase {
@@ -13,7 +15,7 @@ namespace ProjetBD.Models {
         private static Player _mementoPlayer;
 
         private const String QRY_SELECT = "SELECT Players.Id, Players.Firstname, Players.Lastname FROM Players WHERE Players.Id = {0}";
-        private const String QRY_INSERT = "INSERT INTO Players(Firstname, Lastname) VALUES('{0}', '{1}')";
+        private const String QRY_INSERT = "INSERT INTO Players(Firstname, Lastname) VALUES('{0}', '{1}') RETURNING ID INTO :output";
         private const String QRY_FULL_INSERT = "INSERT INTO Players(Id, Firstname, Lastname) VALUES('{0}', '{1}', '{2}')";
         private const String QRY_UPDATE = "UPDATE Players SET Firstname = '{0}', Lastname = '{1}' WHERE Id = '{2}'";
         private const String QRY_DELETE = "DELETE FROM Players WHERE Id = '{0}'";
@@ -63,14 +65,18 @@ namespace ProjetBD.Models {
 
         public override void Insert(DatabaseHelper dbHelper) {
             try {
+                OracleDecimal output;
                 OracleCommand command = dbHelper.Connection.CreateCommand();
                 command.CommandText = QRY_LOCK;
                 command.ExecuteNonQuery();
 
                 command.CommandText = String.Format(QRY_INSERT, FirstName, LastName);
+                command.Parameters.Add("output", OracleDbType.Decimal, ParameterDirection.ReturnValue);
                 command.ExecuteNonQuery();
 
-                dbHelper.LogTransaction(LogActions.Undo, String.Format(QRY_DELETE, Id));
+                output = (OracleDecimal)command.Parameters["output"].Value;
+
+                dbHelper.LogTransaction(LogActions.Undo, String.Format(QRY_DELETE, output.ToInt32()));
                 dbHelper.LogTransaction(LogActions.Redo, String.Format(QRY_INSERT, FirstName, LastName));
 
                 dbHelper.Transaction.Commit();
@@ -124,7 +130,17 @@ namespace ProjetBD.Models {
         }
 
         public override void Lock(Database.DatabaseHelper dbHelper) {
-            throw new NotImplementedException();
+            try {
+                OracleCommand command = dbHelper.Connection.CreateCommand();
+                command.CommandText = String.Format(QRY_SELECT + " FOR UPDATE", this.Id);
+                command.ExecuteScalar();
+                Memento.Id = Id;
+                Memento.FirstName = FirstName;
+                Memento.LastName = FirstName;
+            }
+            catch (OracleException e) {
+                throw e;
+            }
         }
     }
 }
