@@ -34,14 +34,27 @@
             this.btnAddEvent = new System.Windows.Forms.Button();
             this.btnDeleteEvent = new System.Windows.Forms.Button();
             this.eventsDataGridView = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.playersTabPage = new System.Windows.Forms.TabPage();
             this.btnAddPlayer = new System.Windows.Forms.Button();
             this.btnDeletePlayer = new System.Windows.Forms.Button();
             this.playersDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.firstname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.boardGamesTabPage = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.boardGamesDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.boardgame_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.minimumPlayerNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.maximumPlayerNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.minimumAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.averageGameTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,19 +69,6 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.firstname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.boardgame_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.minimumPlayerNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maximumPlayerNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.minimumAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.averageGameTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl.SuspendLayout();
             this.eventsTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eventsDataGridView)).BeginInit();
@@ -127,6 +127,7 @@
             this.btnDeleteEvent.TabIndex = 1;
             this.btnDeleteEvent.Text = "&Supprimer";
             this.btnDeleteEvent.UseVisualStyleBackColor = true;
+            this.btnDeleteEvent.Click += new System.EventHandler(this.btnDeleteEvent_Click);
             // 
             // eventsDataGridView
             // 
@@ -141,6 +142,34 @@
             this.eventsDataGridView.Name = "eventsDataGridView";
             this.eventsDataGridView.Size = new System.Drawing.Size(497, 221);
             this.eventsDataGridView.TabIndex = 0;
+            // 
+            // id
+            // 
+            this.id.DataPropertyName = "Id";
+            this.id.HeaderText = "Identifiant";
+            this.id.Name = "id";
+            this.id.Visible = false;
+            // 
+            // name
+            // 
+            this.name.DataPropertyName = "Name";
+            this.name.HeaderText = "Nom";
+            this.name.Name = "name";
+            // 
+            // description
+            // 
+            this.description.DataPropertyName = "Description";
+            this.description.HeaderText = "Description";
+            this.description.Name = "description";
+            // 
+            // date
+            // 
+            this.date.DataPropertyName = "Datestart";
+            dataGridViewCellStyle1.Format = "D";
+            dataGridViewCellStyle1.NullValue = null;
+            this.date.DefaultCellStyle = dataGridViewCellStyle1;
+            this.date.HeaderText = "Date";
+            this.date.Name = "date";
             // 
             // playersTabPage
             // 
@@ -186,6 +215,25 @@
             this.playersDataGridView.Name = "playersDataGridView";
             this.playersDataGridView.Size = new System.Drawing.Size(497, 221);
             this.playersDataGridView.TabIndex = 1;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Identifiant";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // firstname
+            // 
+            this.firstname.DataPropertyName = "Firstname";
+            this.firstname.HeaderText = "Prénom";
+            this.firstname.Name = "firstname";
+            // 
+            // lastname
+            // 
+            this.lastname.DataPropertyName = "Lastname";
+            this.lastname.HeaderText = "Nom de famille";
+            this.lastname.Name = "lastname";
             // 
             // boardGamesTabPage
             // 
@@ -233,6 +281,43 @@
             this.boardGamesDataGridView.Name = "boardGamesDataGridView";
             this.boardGamesDataGridView.Size = new System.Drawing.Size(671, 221);
             this.boardGamesDataGridView.TabIndex = 2;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Id";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Identifiant";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Visible = false;
+            // 
+            // boardgame_name
+            // 
+            this.boardgame_name.DataPropertyName = "Name";
+            this.boardgame_name.HeaderText = "Nom";
+            this.boardgame_name.Name = "boardgame_name";
+            // 
+            // minimumPlayerNumber
+            // 
+            this.minimumPlayerNumber.DataPropertyName = "MinimumPlayerNumber";
+            this.minimumPlayerNumber.HeaderText = "Nombre minimum de joueurs";
+            this.minimumPlayerNumber.Name = "minimumPlayerNumber";
+            // 
+            // maximumPlayerNumber
+            // 
+            this.maximumPlayerNumber.DataPropertyName = "MaximumPlayerNumber";
+            this.maximumPlayerNumber.HeaderText = "Nombre maximum de joueurs";
+            this.maximumPlayerNumber.Name = "maximumPlayerNumber";
+            // 
+            // minimumAge
+            // 
+            this.minimumAge.DataPropertyName = "MinimumAge";
+            this.minimumAge.HeaderText = "Âge minimum";
+            this.minimumAge.Name = "minimumAge";
+            // 
+            // averageGameTime
+            // 
+            this.averageGameTime.DataPropertyName = "AverageGameTime";
+            this.averageGameTime.HeaderText = "Durée moyenne (minutes)";
+            this.averageGameTime.Name = "averageGameTime";
             // 
             // tabPage5
             // 
@@ -343,90 +428,6 @@
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(84, 17);
             this.toolStripStatusLabel1.Text = "EtatConnexion";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Identifiant";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // firstname
-            // 
-            this.firstname.DataPropertyName = "Firstname";
-            this.firstname.HeaderText = "Prénom";
-            this.firstname.Name = "firstname";
-            // 
-            // lastname
-            // 
-            this.lastname.DataPropertyName = "Lastname";
-            this.lastname.HeaderText = "Nom de famille";
-            this.lastname.Name = "lastname";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Id";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Identifiant";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Visible = false;
-            // 
-            // boardgame_name
-            // 
-            this.boardgame_name.DataPropertyName = "Name";
-            this.boardgame_name.HeaderText = "Nom";
-            this.boardgame_name.Name = "boardgame_name";
-            // 
-            // minimumPlayerNumber
-            // 
-            this.minimumPlayerNumber.DataPropertyName = "MinimumPlayerNumber";
-            this.minimumPlayerNumber.HeaderText = "Nombre minimum de joueurs";
-            this.minimumPlayerNumber.Name = "minimumPlayerNumber";
-            // 
-            // maximumPlayerNumber
-            // 
-            this.maximumPlayerNumber.DataPropertyName = "MaximumPlayerNumber";
-            this.maximumPlayerNumber.HeaderText = "Nombre maximum de joueurs";
-            this.maximumPlayerNumber.Name = "maximumPlayerNumber";
-            // 
-            // minimumAge
-            // 
-            this.minimumAge.DataPropertyName = "MinimumAge";
-            this.minimumAge.HeaderText = "Âge minimum";
-            this.minimumAge.Name = "minimumAge";
-            // 
-            // averageGameTime
-            // 
-            this.averageGameTime.DataPropertyName = "AverageGameTime";
-            this.averageGameTime.HeaderText = "Durée moyenne (minutes)";
-            this.averageGameTime.Name = "averageGameTime";
-            // 
-            // id
-            // 
-            this.id.DataPropertyName = "Id";
-            this.id.HeaderText = "Identifiant";
-            this.id.Name = "id";
-            this.id.Visible = false;
-            // 
-            // name
-            // 
-            this.name.DataPropertyName = "Name";
-            this.name.HeaderText = "Nom";
-            this.name.Name = "name";
-            // 
-            // description
-            // 
-            this.description.DataPropertyName = "Description";
-            this.description.HeaderText = "Description";
-            this.description.Name = "description";
-            // 
-            // date
-            // 
-            this.date.DataPropertyName = "Datestart";
-            dataGridViewCellStyle1.Format = "D";
-            dataGridViewCellStyle1.NullValue = null;
-            this.date.DefaultCellStyle = dataGridViewCellStyle1;
-            this.date.HeaderText = "Date";
-            this.date.Name = "date";
             // 
             // MainWindow
             // 

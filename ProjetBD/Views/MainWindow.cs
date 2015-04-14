@@ -67,6 +67,15 @@ namespace ProjetBD
 
             if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
                 dbHelper.Insert(boardGameEvent);
+                RefreshEventsGrid();
+            }
+        }
+
+        private void btnDeleteEvent_Click(object sender, EventArgs e) {
+            if (eventsDataGridView.SelectedRows.Count == 1) {
+                ModelBase model = (ModelBase)eventsDataGridView.SelectedRows[0].DataBoundItem;
+                dbHelper.Delete(model);
+                RefreshEventsGrid();
             }
         }
 
@@ -86,6 +95,11 @@ namespace ProjetBD
             if (form.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
                 dbHelper.Insert(boardGame);
             }
+        }
+
+        private void RefreshEventsGrid() {
+            eventsDataGridView.DataSource = null;
+            eventsDataGridView.DataSource = BoardGameEventCollection.Instance().BoardgameEvents;
         }
     }
 }

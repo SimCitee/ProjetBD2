@@ -57,7 +57,7 @@
             this.tbNewEventName.MaxLength = 50;
             this.tbNewEventName.Name = "tbNewEventName";
             this.tbNewEventName.Size = new System.Drawing.Size(338, 20);
-            this.tbNewEventName.TabIndex = 2;
+            this.tbNewEventName.TabIndex = 0;
             // 
             // label2
             // 
@@ -82,14 +82,14 @@
             this.dtpNewEventDate.Location = new System.Drawing.Point(81, 137);
             this.dtpNewEventDate.Name = "dtpNewEventDate";
             this.dtpNewEventDate.Size = new System.Drawing.Size(200, 20);
-            this.dtpNewEventDate.TabIndex = 5;
+            this.dtpNewEventDate.TabIndex = 2;
             // 
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(344, 163);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 6;
+            this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "&Annuler";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -99,7 +99,7 @@
             this.btnAccept.Location = new System.Drawing.Point(263, 163);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(75, 23);
-            this.btnAccept.TabIndex = 7;
+            this.btnAccept.TabIndex = 3;
             this.btnAccept.Text = "&Accepter";
             this.btnAccept.UseVisualStyleBackColor = true;
             this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);

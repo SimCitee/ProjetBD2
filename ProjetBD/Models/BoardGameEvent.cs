@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.OracleClient;
+using System.Data;
+using Oracle.DataAccess.Client;
+using Oracle.DataAccess.Types;
 using ProjetBD.Collections;
 using ProjetBD.Database;
 
@@ -11,7 +13,7 @@ namespace ProjetBD.Models {
     public class BoardGameEvent : ModelBase {
 
         private const String QRY_SELECT = "SELECT EVENTS.ID, EVENTS.NAME, EVENTS.DESCRIPTION, EVENTS.DATESTART FROM EVENTS WHERE EVENTS.ID = {0}";
-        private const String QRY_INSERT = "INSERT INTO EVENTS(NAME, DESCRIPTION, DATESTART) VALUES('{0}', '{1}', '{2}')";
+        private const String QRY_INSERT = "INSERT INTO EVENTS(NAME, DESCRIPTION, DATESTART) VALUES('{0}', '{1}', '{2}') RETURNING ID INTO :output";
         private const String QRY_FULL_INSERT = "INSERT INTO EVENTS(ID, NAME, DESCRIPTION, DATESTART) VALUES('{0}', '{1}', '{2}', '{3}')";
         private const String QRY_UPDATE = "UPDATE EVENTS SET NAME = '{0}', DESCRIPTION = '{1}', DATESTART = '{2}' WHERE Id = '{3}'";
         private const String QRY_DELETE = "DELETE FROM EVENTS WHERE ID = '{0}'";
@@ -89,14 +91,18 @@ namespace ProjetBD.Models {
 
         public override void Insert(Database.DatabaseHelper dbHelper) {
             try {
+                OracleDecimal output;
                 OracleCommand command = dbHelper.Connection.CreateCommand();
                 command.CommandText = QRY_LOCK;
                 command.ExecuteNonQuery();
 
-                command.CommandText = String.Format(QRY_INSERT, Name, Description, Datestart);
+                command.CommandText = String.Format(QRY_INSERT, Name, Description, Datestart.ToString("yy-MM-dd"));
+                command.Parameters.Add("output", OracleDbType.Decimal, ParameterDirection.ReturnValue);
                 command.ExecuteNonQuery();
 
-                dbHelper.LogTransaction(LogActions.Undo, String.Format(QRY_DELETE, Id));
+                output = (OracleDecimal)command.Parameters["output"].Value;
+
+                dbHelper.LogTransaction(LogActions.Undo, String.Format(QRY_DELETE, output.ToInt32()));
                 dbHelper.LogTransaction(LogActions.Redo, String.Format(QRY_INSERT, Name, Description, Datestart));
 
                 dbHelper.Transaction.Commit();

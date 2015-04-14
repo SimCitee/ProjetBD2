@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.OracleClient;
+using Oracle.DataAccess.Client;
 using ProjetBD.Models;
 
 namespace ProjetBD.Database {
@@ -158,7 +158,8 @@ namespace ProjetBD.Database {
 
         public void LogTransaction(String logAction, String commandString) {
             OracleCommand command = Connection.CreateCommand();
-            commandString = commandString.Replace("'", "\'");
+
+            commandString = commandString.Replace("'", "''");
             command.CommandText = String.Format("INSERT INTO LOGS(ACTION, COMMAND) VALUES('{0}','{1}')", logAction, commandString);
             command.ExecuteNonQuery();
         }
