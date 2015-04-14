@@ -116,6 +116,9 @@ namespace ProjetBD.Database {
 
         public void PushUpdate(ModelBase model) {
             try {
+                Connection.Open();
+                _transaction = Connection.BeginTransaction();
+
                 model.Update(this);
                 LogTransaction(LogActions.Confirmed);
             }

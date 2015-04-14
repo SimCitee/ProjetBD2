@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.eventsTabPage = new System.Windows.Forms.TabPage();
             this.btnAddEvent = new System.Windows.Forms.Button();
@@ -140,8 +140,13 @@
             this.date});
             this.eventsDataGridView.Location = new System.Drawing.Point(6, 6);
             this.eventsDataGridView.Name = "eventsDataGridView";
+            this.eventsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.eventsDataGridView.Size = new System.Drawing.Size(497, 221);
             this.eventsDataGridView.TabIndex = 0;
+            this.eventsDataGridView.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.eventsDataGridView_CellBeginEdit);
+            this.eventsDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.eventsDataGridView_CellClick);
+            this.eventsDataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.eventsDataGridView_CellEndEdit);
+            this.eventsDataGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.eventsDataGridView_CellValueChanged);
             // 
             // id
             // 
@@ -165,9 +170,9 @@
             // date
             // 
             this.date.DataPropertyName = "Datestart";
-            dataGridViewCellStyle1.Format = "D";
-            dataGridViewCellStyle1.NullValue = null;
-            this.date.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Format = "D";
+            dataGridViewCellStyle3.NullValue = null;
+            this.date.DefaultCellStyle = dataGridViewCellStyle3;
             this.date.HeaderText = "Date";
             this.date.Name = "date";
             // 

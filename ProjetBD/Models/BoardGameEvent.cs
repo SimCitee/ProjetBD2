@@ -117,7 +117,7 @@ namespace ProjetBD.Models {
         public override void Update(Database.DatabaseHelper dbHelper) {
             try {
                 OracleCommand command = dbHelper.Connection.CreateCommand();
-                command.CommandText = String.Format(QRY_UPDATE, Name, Description, Datestart, Id);
+                command.CommandText = String.Format(QRY_UPDATE, Name, Description, Datestart.ToString("yy-MM-dd"), Id);
                 command.ExecuteNonQuery();
 
                 dbHelper.LogTransaction(LogActions.Undo, String.Format(QRY_UPDATE, Memento.Name, Memento.Description, Memento.Datestart, Memento.Id));
