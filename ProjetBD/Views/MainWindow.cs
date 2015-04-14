@@ -37,6 +37,28 @@ namespace ProjetBD
             playersDataGridView.Height = playersTabPage.Height - 80;
             boardGamesDataGridView.Width = boardGamesTabPage.Width - boardGamesDataGridView.Location.X;
             boardGamesDataGridView.Height = boardGamesTabPage.Height - 80;
+
+           /* cCoursDepartement.DataSource = dataStore.Departements;
+            cCoursDepartement.DisplayMember = "Nom";
+            cCoursDepartement.ValueMember = "Self";
+            cCoursEnseignant.DataSource = dataStore.Enseignants;
+            cCoursEnseignant.DisplayMember = "NomComplet";
+            cCoursEnseignant.ValueMember = "Self";
+
+            cInscriptionCours.DataSource = dataStore.LesCours;
+            cInscriptionCours.DisplayMember = "Sigle";
+            cInscriptionCours.ValueMember = "Self";
+            cInscriptionEtudiant.DataSource = dataStore.Etudiants;
+            cInscriptionEtudiant.DisplayMember = "NomComplet";
+            cInscriptionEtudiant.ValueMember = "Self";*/
+
+            eventsDataGridView.AutoGenerateColumns = false;
+            boardGamesDataGridView.AutoGenerateColumns = false;
+            playersDataGridView.AutoGenerateColumns = false;
+
+            eventsDataGridView.DataSource = BoardGameEventCollection.Instance().BoardgameEvents;
+            boardGamesDataGridView.DataSource = BoardGameCollection.Instance().BoardGames;
+            playersDataGridView.DataSource = PlayerCollection.Instance().Players;
         }
 
         private void btnAddEvent_Click(object sender, EventArgs e) {

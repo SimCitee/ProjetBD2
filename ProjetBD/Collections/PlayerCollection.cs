@@ -40,7 +40,7 @@ namespace ProjetBD.Collections {
                 OracleDataReader reader = command.ExecuteReader();
 
                 while (reader.Read()) {
-                    Player player = new Player(reader["Firstname"].ToString(), reader["Lastname"].ToString(), (Int32)reader["Id"]);
+                    Player player = new Player(reader["Firstname"].ToString(), reader["Lastname"].ToString(), Int32.Parse(reader["Id"].ToString()));
                     Players.Add(player);
                 }
             }

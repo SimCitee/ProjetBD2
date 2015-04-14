@@ -32,14 +32,16 @@ namespace ProjetBD.Collections {
         public void LoadBoardEventsFromDatabase(OracleConnection connection) {
             try {
                 OracleCommand command = connection.CreateCommand();
-                command.CommandText = "SELECT Events.Id, Events.Name, Events.Description, Events.Date FROM Events";
+                command.CommandText = "SELECT EVENTS.ID, EVENTS.NAME, EVENTS.DESCRIPTION, TO_CHAR(EVENTS.DATESTART, 'DD-MM-YYYY') AS DATESTART FROM EVENTS";
 
                 connection.Open();
 
                 OracleDataReader reader = command.ExecuteReader();
 
                 while (reader.Read()) {
-                    BoardGameEvent boardgameEvent = new BoardGameEvent(reader["Name"].ToString(), reader["Description"].ToString(), (DateTime)reader["Date"], (Int32)reader["Id"]);
+                    DateTime dateStart = DateTime.ParseExact(reader["DATESTART"].ToString(), "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
+
+                    BoardGameEvent boardgameEvent = new BoardGameEvent(reader["NAME"].ToString(), reader["DESCRIPTION"].ToString(), dateStart, (Int32.Parse(reader["ID"].ToString())));
                     BoardgameEvents.Add(boardgameEvent);
                 }
             }

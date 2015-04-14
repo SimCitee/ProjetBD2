@@ -32,14 +32,14 @@ namespace ProjetBD.Collections {
         public void LoadBoardGamesFromDatabase(OracleConnection connection) {
             try {
                 OracleCommand command = connection.CreateCommand();
-                command.CommandText = "SELECT BoardGames.Id, BoardGames.Name, BoardGames.MinimumPlayerNumber, BoardGames.MaximumPlayerNumber, BoardGames.MinimumAge, BoardGames.AverageGameTime FROM BoardGames";
+                command.CommandText = "SELECT BoardGames.Id, BoardGames.Name, BoardGames.Minimum_Player_Number, BoardGames.Maximum_Player_Number, BoardGames.Minimum_Age, BoardGames.Average_Game_Time FROM BoardGames";
 
                 connection.Open();
 
                 OracleDataReader reader = command.ExecuteReader();
 
                 while (reader.Read()) {
-                    BoardGame boardgame = new BoardGame(reader["Name"].ToString(), (Int32)reader["MinimumPlayerNumber"], (Int32)reader["MaximumPlayerNumber"], (Int32)reader["MinimumAge"], (Int32)reader["AverageGameTime"], (Int32)reader["Id"]);
+                    BoardGame boardgame = new BoardGame(reader["Name"].ToString(), Int32.Parse(reader["Minimum_Player_Number"].ToString()), Int32.Parse(reader["Maximum_Player_Number"].ToString()), Int32.Parse(reader["Minimum_Age"].ToString()), Int32.Parse(reader["Average_Game_Time"].ToString()), Int32.Parse(reader["Id"].ToString()));
                     BoardGames.Add(boardgame);
                 }
             }

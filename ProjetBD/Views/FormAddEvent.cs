@@ -22,7 +22,7 @@ namespace ProjetBD.Views {
         private void btnAccept_Click(object sender, EventArgs e) {
             if (!String.IsNullOrEmpty(tbNewEventName.Text) && !String.IsNullOrEmpty(rtbNewEventDescription.Text)) {
                 _boardGameEvent.Name = tbNewEventName.Text;
-                _boardGameEvent.Desription = rtbNewEventDescription.Text;
+                _boardGameEvent.Description = rtbNewEventDescription.Text;
                 _boardGameEvent.Datestart = dtpNewEventDate.Value;
 
                 DialogResult = System.Windows.Forms.DialogResult.OK;
