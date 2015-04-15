@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.eventsTabPage = new System.Windows.Forms.TabPage();
             this.btnAddEvent = new System.Windows.Forms.Button();
@@ -56,31 +56,31 @@
             this.minimumAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.averageGameTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.eventBoardGamesRemoveBtn = new System.Windows.Forms.Button();
+            this.eventBoardGamesAddBtn = new System.Windows.Forms.Button();
+            this.eventPlayersRemoveBtn = new System.Windows.Forms.Button();
+            this.eventPlayersAddBtn = new System.Windows.Forms.Button();
+            this.eventBoardGamesListBox = new System.Windows.Forms.ListBox();
+            this.eventPlayersListBox = new System.Windows.Forms.ListBox();
             this.eventBoardGamesDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.eventPlayersDataGridView = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.eventComboBox = new System.Windows.Forms.ComboBox();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.eventPlayerFirstname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.eventPlayerLastname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.eventPlayersListBox = new System.Windows.Forms.ListBox();
-            this.eventBoardGamesListBox = new System.Windows.Forms.ListBox();
-            this.eventPlayersAddBtn = new System.Windows.Forms.Button();
-            this.eventPlayersRemoveBtn = new System.Windows.Forms.Button();
-            this.eventBoardGamesAddBtn = new System.Windows.Forms.Button();
-            this.eventBoardGamesRemoveBtn = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.eventComboBox = new System.Windows.Forms.ComboBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.upcomingEventsId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.upcomingEventsEventName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.upcomingEventsDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl.SuspendLayout();
             this.eventsTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eventsDataGridView)).BeginInit();
@@ -92,9 +92,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.eventBoardGamesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventPlayersDataGridView)).BeginInit();
             this.tabPage4.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -184,9 +184,9 @@
             // date
             // 
             this.date.DataPropertyName = "Datestart";
-            dataGridViewCellStyle6.Format = "D";
-            dataGridViewCellStyle6.NullValue = null;
-            this.date.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Format = "D";
+            dataGridViewCellStyle2.NullValue = null;
+            this.date.DefaultCellStyle = dataGridViewCellStyle2;
             this.date.HeaderText = "Date";
             this.date.Name = "date";
             // 
@@ -365,6 +365,62 @@
             this.tabPage5.Text = "Organisation d\'un événement";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // eventBoardGamesRemoveBtn
+            // 
+            this.eventBoardGamesRemoveBtn.Location = new System.Drawing.Point(703, 359);
+            this.eventBoardGamesRemoveBtn.Name = "eventBoardGamesRemoveBtn";
+            this.eventBoardGamesRemoveBtn.Size = new System.Drawing.Size(75, 23);
+            this.eventBoardGamesRemoveBtn.TabIndex = 13;
+            this.eventBoardGamesRemoveBtn.Text = "--->";
+            this.eventBoardGamesRemoveBtn.UseVisualStyleBackColor = true;
+            this.eventBoardGamesRemoveBtn.Click += new System.EventHandler(this.eventBoardGamesRemoveBtn_Click);
+            // 
+            // eventBoardGamesAddBtn
+            // 
+            this.eventBoardGamesAddBtn.Location = new System.Drawing.Point(703, 329);
+            this.eventBoardGamesAddBtn.Name = "eventBoardGamesAddBtn";
+            this.eventBoardGamesAddBtn.Size = new System.Drawing.Size(75, 23);
+            this.eventBoardGamesAddBtn.TabIndex = 12;
+            this.eventBoardGamesAddBtn.Text = "<---";
+            this.eventBoardGamesAddBtn.UseVisualStyleBackColor = true;
+            this.eventBoardGamesAddBtn.Click += new System.EventHandler(this.eventBoardGamesAddBtn_Click);
+            // 
+            // eventPlayersRemoveBtn
+            // 
+            this.eventPlayersRemoveBtn.Location = new System.Drawing.Point(703, 146);
+            this.eventPlayersRemoveBtn.Name = "eventPlayersRemoveBtn";
+            this.eventPlayersRemoveBtn.Size = new System.Drawing.Size(75, 23);
+            this.eventPlayersRemoveBtn.TabIndex = 11;
+            this.eventPlayersRemoveBtn.Text = "--->";
+            this.eventPlayersRemoveBtn.UseVisualStyleBackColor = true;
+            this.eventPlayersRemoveBtn.Click += new System.EventHandler(this.eventPlayersRemoveBtn_Click);
+            // 
+            // eventPlayersAddBtn
+            // 
+            this.eventPlayersAddBtn.Location = new System.Drawing.Point(703, 117);
+            this.eventPlayersAddBtn.Name = "eventPlayersAddBtn";
+            this.eventPlayersAddBtn.Size = new System.Drawing.Size(75, 23);
+            this.eventPlayersAddBtn.TabIndex = 10;
+            this.eventPlayersAddBtn.Text = "<---";
+            this.eventPlayersAddBtn.UseVisualStyleBackColor = true;
+            this.eventPlayersAddBtn.Click += new System.EventHandler(this.eventPlayersAddBtn_Click);
+            // 
+            // eventBoardGamesListBox
+            // 
+            this.eventBoardGamesListBox.FormattingEnabled = true;
+            this.eventBoardGamesListBox.Location = new System.Drawing.Point(784, 254);
+            this.eventBoardGamesListBox.Name = "eventBoardGamesListBox";
+            this.eventBoardGamesListBox.Size = new System.Drawing.Size(136, 199);
+            this.eventBoardGamesListBox.TabIndex = 9;
+            // 
+            // eventPlayersListBox
+            // 
+            this.eventPlayersListBox.FormattingEnabled = true;
+            this.eventPlayersListBox.Location = new System.Drawing.Point(784, 39);
+            this.eventPlayersListBox.Name = "eventPlayersListBox";
+            this.eventPlayersListBox.Size = new System.Drawing.Size(136, 199);
+            this.eventPlayersListBox.TabIndex = 8;
+            // 
             // eventBoardGamesDataGridView
             // 
             this.eventBoardGamesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -375,6 +431,19 @@
             this.eventBoardGamesDataGridView.Name = "eventBoardGamesDataGridView";
             this.eventBoardGamesDataGridView.Size = new System.Drawing.Size(689, 199);
             this.eventBoardGamesDataGridView.TabIndex = 7;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Id";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Identifiant";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Nom";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             // 
             // eventPlayersDataGridView
             // 
@@ -387,6 +456,25 @@
             this.eventPlayersDataGridView.Name = "eventPlayersDataGridView";
             this.eventPlayersDataGridView.Size = new System.Drawing.Size(689, 199);
             this.eventPlayersDataGridView.TabIndex = 6;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Id";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Identifiant";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Visible = false;
+            // 
+            // eventPlayerFirstname
+            // 
+            this.eventPlayerFirstname.DataPropertyName = "FirstName";
+            this.eventPlayerFirstname.HeaderText = "Prénom";
+            this.eventPlayerFirstname.Name = "eventPlayerFirstname";
+            // 
+            // eventPlayerLastname
+            // 
+            this.eventPlayerLastname.DataPropertyName = "LastName";
+            this.eventPlayerLastname.HeaderText = "Nom de famille";
+            this.eventPlayerLastname.Name = "eventPlayerLastname";
             // 
             // label1
             // 
@@ -423,106 +511,31 @@
             this.tabPage4.Text = "Rapports";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // statusStrip1
+            // label3
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 528);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(936, 22);
-            this.statusStrip1.TabIndex = 1;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(8, 205);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(126, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Jeux de table pour adulte";
             // 
-            // toolStripStatusLabel1
+            // label2
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(84, 17);
-            this.toolStripStatusLabel1.Text = "EtatConnexion";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(8, 15);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(101, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Événements à venir";
             // 
-            // dataGridViewTextBoxColumn3
+            // dataGridView2
             // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Id";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Identifiant";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Visible = false;
-            // 
-            // eventPlayerFirstname
-            // 
-            this.eventPlayerFirstname.DataPropertyName = "FirstName";
-            this.eventPlayerFirstname.HeaderText = "Prénom";
-            this.eventPlayerFirstname.Name = "eventPlayerFirstname";
-            // 
-            // eventPlayerLastname
-            // 
-            this.eventPlayerLastname.DataPropertyName = "LastName";
-            this.eventPlayerLastname.HeaderText = "Nom de famille";
-            this.eventPlayerLastname.Name = "eventPlayerLastname";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Id";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Identifiant";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Name";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Nom";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // eventPlayersListBox
-            // 
-            this.eventPlayersListBox.FormattingEnabled = true;
-            this.eventPlayersListBox.Location = new System.Drawing.Point(784, 39);
-            this.eventPlayersListBox.Name = "eventPlayersListBox";
-            this.eventPlayersListBox.Size = new System.Drawing.Size(136, 199);
-            this.eventPlayersListBox.TabIndex = 8;
-            // 
-            // eventBoardGamesListBox
-            // 
-            this.eventBoardGamesListBox.FormattingEnabled = true;
-            this.eventBoardGamesListBox.Location = new System.Drawing.Point(784, 254);
-            this.eventBoardGamesListBox.Name = "eventBoardGamesListBox";
-            this.eventBoardGamesListBox.Size = new System.Drawing.Size(136, 199);
-            this.eventBoardGamesListBox.TabIndex = 9;
-            // 
-            // eventPlayersAddBtn
-            // 
-            this.eventPlayersAddBtn.Location = new System.Drawing.Point(703, 117);
-            this.eventPlayersAddBtn.Name = "eventPlayersAddBtn";
-            this.eventPlayersAddBtn.Size = new System.Drawing.Size(75, 23);
-            this.eventPlayersAddBtn.TabIndex = 10;
-            this.eventPlayersAddBtn.Text = "<---";
-            this.eventPlayersAddBtn.UseVisualStyleBackColor = true;
-            this.eventPlayersAddBtn.Click += new System.EventHandler(this.eventPlayersAddBtn_Click);
-            // 
-            // eventPlayersRemoveBtn
-            // 
-            this.eventPlayersRemoveBtn.Location = new System.Drawing.Point(703, 146);
-            this.eventPlayersRemoveBtn.Name = "eventPlayersRemoveBtn";
-            this.eventPlayersRemoveBtn.Size = new System.Drawing.Size(75, 23);
-            this.eventPlayersRemoveBtn.TabIndex = 11;
-            this.eventPlayersRemoveBtn.Text = "--->";
-            this.eventPlayersRemoveBtn.UseVisualStyleBackColor = true;
-            this.eventPlayersRemoveBtn.Click += new System.EventHandler(this.eventPlayersRemoveBtn_Click);
-            // 
-            // eventBoardGamesAddBtn
-            // 
-            this.eventBoardGamesAddBtn.Location = new System.Drawing.Point(703, 329);
-            this.eventBoardGamesAddBtn.Name = "eventBoardGamesAddBtn";
-            this.eventBoardGamesAddBtn.Size = new System.Drawing.Size(75, 23);
-            this.eventBoardGamesAddBtn.TabIndex = 12;
-            this.eventBoardGamesAddBtn.Text = "<---";
-            this.eventBoardGamesAddBtn.UseVisualStyleBackColor = true;
-            // 
-            // eventBoardGamesRemoveBtn
-            // 
-            this.eventBoardGamesRemoveBtn.Location = new System.Drawing.Point(703, 359);
-            this.eventBoardGamesRemoveBtn.Name = "eventBoardGamesRemoveBtn";
-            this.eventBoardGamesRemoveBtn.Size = new System.Drawing.Size(75, 23);
-            this.eventBoardGamesRemoveBtn.TabIndex = 13;
-            this.eventBoardGamesRemoveBtn.Text = "--->";
-            this.eventBoardGamesRemoveBtn.UseVisualStyleBackColor = true;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(8, 221);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(544, 150);
+            this.dataGridView2.TabIndex = 1;
             // 
             // dataGridView1
             // 
@@ -535,32 +548,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(544, 150);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(8, 221);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(544, 150);
-            this.dataGridView2.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 15);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Événements à venir";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 205);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(126, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Jeux de table pour adulte";
             // 
             // upcomingEventsId
             // 
@@ -577,6 +564,21 @@
             // 
             this.upcomingEventsDescription.HeaderText = "Description";
             this.upcomingEventsDescription.Name = "upcomingEventsDescription";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 528);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(936, 22);
+            this.statusStrip1.TabIndex = 1;
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(84, 17);
+            this.toolStripStatusLabel1.Text = "EtatConnexion";
             // 
             // MainWindow
             // 
@@ -601,10 +603,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.eventPlayersDataGridView)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -53,6 +53,12 @@ namespace ProjetBD.Models {
             set { _lastName = value; }
         }
 
+        public String FullName {
+            get {
+                return _firstName + " " + _lastName;
+            }
+        }
+
         public Player Memento {
             get {
                 if (_mementoPlayer == null) {

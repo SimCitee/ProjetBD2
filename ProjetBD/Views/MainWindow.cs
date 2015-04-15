@@ -51,6 +51,14 @@ namespace ProjetBD
             eventComboBox.DataSource = new BindingSource(BoardGameEventCollection.Instance().BoardgameEvents, null);
             eventComboBox.DisplayMember = "EventNameDate";
             eventComboBox.ValueMember = "Id";
+
+            eventPlayersListBox.DataSource = PlayerCollection.Instance().Players;
+            eventPlayersListBox.DisplayMember = "FullName";
+            eventPlayersListBox.ValueMember = "Id";
+
+            eventBoardGamesListBox.DataSource = BoardGameCollection.Instance().BoardGames;
+            eventBoardGamesListBox.DisplayMember = "Name";
+            eventBoardGamesListBox.ValueMember = "Id";
         }
 
         private void btnAddEvent_Click(object sender, EventArgs e) {
@@ -225,15 +233,37 @@ namespace ProjetBD
         }
 
         private void eventComboBox_SelectedValueChanged(object sender, EventArgs e) {
-            BoardGameEvent res = eventComboBox.SelectedItem as BoardGameEvent;
+            BoardGameEvent selectedEvent = eventComboBox.SelectedItem as BoardGameEvent;
+            
+            selectedEvent.LoadPlayersFromDatabase(dbHelper.Connection);
+            selectedEvent.LoadBoardGamesFromDatabase(dbHelper.Connection);
+
+            eventPlayersDataGridView.DataSource = selectedEvent.PlayerList;
+            eventBoardGamesDataGridView.DataSource = selectedEvent.BoardGameList;
         }
 
         private void eventPlayersAddBtn_Click(object sender, EventArgs e) {
-
+            (eventComboBox.SelectedItem as BoardGameEvent).AddPlayerToPlayerList(eventPlayersListBox.SelectedItem as Player, dbHelper.Connection);
+            eventPlayersDataGridView.DataSource = null;
+            eventPlayersDataGridView.DataSource = PlayerCollection.Instance().Players;
         }
 
         private void eventPlayersRemoveBtn_Click(object sender, EventArgs e) {
-            
+            (eventComboBox.SelectedItem as BoardGameEvent).RemovePlayerFromPlayerList(eventPlayersListBox.SelectedItem as Player, dbHelper.Connection);
+            eventPlayersDataGridView.DataSource = null;
+            eventPlayersDataGridView.DataSource = PlayerCollection.Instance().Players;
+        }
+
+        private void eventBoardGamesAddBtn_Click(object sender, EventArgs e) {
+            (eventComboBox.SelectedItem as BoardGameEvent).AddBoardGameToBoardGameList(eventBoardGamesListBox.SelectedItem as BoardGame, dbHelper.Connection);
+            eventBoardGamesDataGridView.DataSource = null;
+            eventBoardGamesDataGridView.DataSource = BoardGameCollection.Instance().BoardGames;
+        }
+
+        private void eventBoardGamesRemoveBtn_Click(object sender, EventArgs e) {
+            (eventComboBox.SelectedItem as BoardGameEvent).RemoveBoardGameFromBoardGameList(eventBoardGamesListBox.SelectedItem as BoardGame, dbHelper.Connection);
+            eventBoardGamesDataGridView.DataSource = null;
+            eventBoardGamesDataGridView.DataSource = BoardGameCollection.Instance().BoardGames;
         }
     }
 }
