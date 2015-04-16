@@ -179,11 +179,14 @@ namespace ProjetBD.Models {
                 OracleDataReader reader = command.ExecuteReader();
 
                 while (reader.Read()) {
-                    _playerList.Add(PlayerCollection.Instance().Players.Where(s => s.Id == Int32.Parse(reader["PLAYER_ID"].ToString())).First());
+                    PlayerList.Add(PlayerCollection.Instance().Players.Where(s => s.Id == Int32.Parse(reader["PLAYER_ID"].ToString())).First());
                 }
             }
             catch (OracleException e) {
                 throw e;
+            }
+            finally {
+                connection.Close();
             }
         }
 
@@ -197,11 +200,14 @@ namespace ProjetBD.Models {
                 OracleDataReader reader = command.ExecuteReader();
 
                 while (reader.Read()) {
-                    _boardGameList.Add(BoardGameCollection.Instance().BoardGames.Where(s => s.Id == Int32.Parse(reader["BOARDGAME_ID"].ToString())).First());
+                    BoardGameList.Add(BoardGameCollection.Instance().BoardGames.Where(s => s.Id == Int32.Parse(reader["BOARDGAME_ID"].ToString())).First());
                 }
             }
             catch (OracleException e) {
                 throw e;
+            }
+            finally {
+                connection.Close();
             }
         }
 
@@ -214,10 +220,13 @@ namespace ProjetBD.Models {
 
                 command.ExecuteNonQuery();
 
-                _playerList.Add(newPlayer);
+                PlayerList.Add(newPlayer);
             }
             catch (OracleException e) {
                 throw e;
+            }
+            finally {
+                connection.Close();
             }
         }
 
@@ -235,6 +244,9 @@ namespace ProjetBD.Models {
             catch (OracleException e) {
                 throw e;
             }
+            finally {
+                connection.Close();
+            }
         }
 
         public void AddBoardGameToBoardGameList(BoardGame newBoardGame, OracleConnection connection) {
@@ -251,6 +263,9 @@ namespace ProjetBD.Models {
             catch (OracleException e) {
                 throw e;
             }
+            finally {
+                connection.Close();
+            }
         }
 
         public void RemoveBoardGameFromBoardGameList(BoardGame oldBoardGame, OracleConnection connection) {
@@ -266,6 +281,9 @@ namespace ProjetBD.Models {
             }
             catch (OracleException e) {
                 throw e;
+            }
+            finally {
+                connection.Close();
             }
         }
 

@@ -21,7 +21,6 @@ namespace ProjetBD
         private const String DBCONFIG = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=NEPTUNE.UQTR.CA)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SID=COURSBD))); User Id=SMI1002_39;Password=53uzct45;";
         DatabaseHelper dbHelper;
 
-
         public MainWindow() {
             InitializeComponent();
 
@@ -40,6 +39,8 @@ namespace ProjetBD
             boardGamesDataGridView.Width = boardGamesTabPage.Width - boardGamesDataGridView.Location.X;
             boardGamesDataGridView.Height = boardGamesTabPage.Height - 80;
 
+            eventPlayersDataGridView.AutoGenerateColumns = false;
+            eventBoardGamesDataGridView.AutoGenerateColumns = false;
             eventsDataGridView.AutoGenerateColumns = false;
             boardGamesDataGridView.AutoGenerateColumns = false;
             playersDataGridView.AutoGenerateColumns = false;
@@ -47,18 +48,6 @@ namespace ProjetBD
             eventsDataGridView.DataSource = BoardGameEventCollection.Instance().BoardgameEvents;
             boardGamesDataGridView.DataSource = BoardGameCollection.Instance().BoardGames;
             playersDataGridView.DataSource = PlayerCollection.Instance().Players;
-
-            eventComboBox.DataSource = new BindingSource(BoardGameEventCollection.Instance().BoardgameEvents, null);
-            eventComboBox.DisplayMember = "EventNameDate";
-            eventComboBox.ValueMember = "Id";
-
-            eventPlayersListBox.DataSource = PlayerCollection.Instance().Players;
-            eventPlayersListBox.DisplayMember = "FullName";
-            eventPlayersListBox.ValueMember = "Id";
-
-            eventBoardGamesListBox.DataSource = BoardGameCollection.Instance().BoardGames;
-            eventBoardGamesListBox.DisplayMember = "Name";
-            eventBoardGamesListBox.ValueMember = "Id";
         }
 
         private void btnAddEvent_Click(object sender, EventArgs e) {
@@ -233,37 +222,118 @@ namespace ProjetBD
         }
 
         private void eventComboBox_SelectedValueChanged(object sender, EventArgs e) {
-            BoardGameEvent selectedEvent = eventComboBox.SelectedItem as BoardGameEvent;
-            
-            selectedEvent.LoadPlayersFromDatabase(dbHelper.Connection);
-            selectedEvent.LoadBoardGamesFromDatabase(dbHelper.Connection);
+            if (tabControl.SelectedIndex == 3 && eventComboBox.SelectedItem != null) {
+                BoardGameEvent selectedEvent = eventComboBox.SelectedItem as BoardGameEvent;
 
-            eventPlayersDataGridView.DataSource = selectedEvent.PlayerList;
-            eventBoardGamesDataGridView.DataSource = selectedEvent.BoardGameList;
+                selectedEvent.PlayerList.Clear();
+                selectedEvent.BoardGameList.Clear();
+
+                selectedEvent.LoadPlayersFromDatabase(dbHelper.Connection);
+                selectedEvent.LoadBoardGamesFromDatabase(dbHelper.Connection);
+
+                List<Player> playerList = new List<Player>();
+                foreach(Player player in PlayerCollection.Instance().Players) {
+                    if (!selectedEvent.PlayerList.Exists(x => x.Id == player.Id)) {
+                        playerList.Add(player);
+                    }
+                }
+
+                List<BoardGame> boardGameList = new List<BoardGame>();
+                foreach (BoardGame boardgame in BoardGameCollection.Instance().BoardGames) {
+                    if (!selectedEvent.BoardGameList.Exists(x => x.Id == boardgame.Id)) {
+                        boardGameList.Add(boardgame);
+                    }
+                }
+
+                RefreshEventPlayersListBox(playerList);
+                RefreshEventBoardGamesListBox(boardGameList);
+
+                eventPlayersDataGridView.DataSource = selectedEvent.PlayerList;
+                eventBoardGamesDataGridView.DataSource = selectedEvent.BoardGameList;
+            }
         }
 
         private void eventPlayersAddBtn_Click(object sender, EventArgs e) {
-            (eventComboBox.SelectedItem as BoardGameEvent).AddPlayerToPlayerList(eventPlayersListBox.SelectedItem as Player, dbHelper.Connection);
+            BoardGameEvent selectedEvent = eventComboBox.SelectedItem as BoardGameEvent;
+            Player player = eventPlayersListBox.SelectedItem as Player;
+
+            selectedEvent.AddPlayerToPlayerList(player, dbHelper.Connection);
             eventPlayersDataGridView.DataSource = null;
-            eventPlayersDataGridView.DataSource = PlayerCollection.Instance().Players;
+            eventPlayersDataGridView.DataSource = selectedEvent.PlayerList;
+
+            (eventPlayersListBox.DataSource as List<Player>).Remove(player);
+            List<Player> temp = eventPlayersListBox.DataSource as List<Player>;
+            RefreshEventPlayersListBox(temp);
         }
 
         private void eventPlayersRemoveBtn_Click(object sender, EventArgs e) {
-            (eventComboBox.SelectedItem as BoardGameEvent).RemovePlayerFromPlayerList(eventPlayersListBox.SelectedItem as Player, dbHelper.Connection);
-            eventPlayersDataGridView.DataSource = null;
-            eventPlayersDataGridView.DataSource = PlayerCollection.Instance().Players;
+            if (eventPlayersDataGridView.SelectedRows.Count == 1) {
+                BoardGameEvent selectedEvent = eventComboBox.SelectedItem as BoardGameEvent;
+                Player player = (Player)eventPlayersDataGridView.SelectedRows[0].DataBoundItem;
+
+                selectedEvent.RemovePlayerFromPlayerList(player, dbHelper.Connection);
+                eventPlayersDataGridView.DataSource = null;
+                eventPlayersDataGridView.DataSource = selectedEvent.PlayerList;
+
+                (eventPlayersListBox.DataSource as List<Player>).Add(player);
+                List<Player> temp = eventPlayersListBox.DataSource as List<Player>;
+                RefreshEventPlayersListBox(temp);
+            }
         }
 
         private void eventBoardGamesAddBtn_Click(object sender, EventArgs e) {
-            (eventComboBox.SelectedItem as BoardGameEvent).AddBoardGameToBoardGameList(eventBoardGamesListBox.SelectedItem as BoardGame, dbHelper.Connection);
+            BoardGameEvent selectedEvent = eventComboBox.SelectedItem as BoardGameEvent;
+            BoardGame boardGame = eventBoardGamesListBox.SelectedItem as BoardGame;
+
+            selectedEvent.AddBoardGameToBoardGameList(boardGame, dbHelper.Connection);
             eventBoardGamesDataGridView.DataSource = null;
-            eventBoardGamesDataGridView.DataSource = BoardGameCollection.Instance().BoardGames;
+            eventBoardGamesDataGridView.DataSource = selectedEvent.BoardGameList;
+
+            (eventBoardGamesListBox.DataSource as List<BoardGame>).Remove(boardGame);
+            List<BoardGame> temp = eventBoardGamesListBox.DataSource as List<BoardGame>;
+            RefreshEventBoardGamesListBox(temp);
         }
 
         private void eventBoardGamesRemoveBtn_Click(object sender, EventArgs e) {
-            (eventComboBox.SelectedItem as BoardGameEvent).RemoveBoardGameFromBoardGameList(eventBoardGamesListBox.SelectedItem as BoardGame, dbHelper.Connection);
-            eventBoardGamesDataGridView.DataSource = null;
-            eventBoardGamesDataGridView.DataSource = BoardGameCollection.Instance().BoardGames;
+            if (eventBoardGamesDataGridView.SelectedRows.Count == 1) {
+                BoardGameEvent selectedEvent = eventComboBox.SelectedItem as BoardGameEvent;
+                BoardGame boardGame = (BoardGame)eventBoardGamesDataGridView.SelectedRows[0].DataBoundItem;
+
+                selectedEvent.RemoveBoardGameFromBoardGameList(boardGame, dbHelper.Connection);
+                eventBoardGamesDataGridView.DataSource = null;
+                eventBoardGamesDataGridView.DataSource = selectedEvent.BoardGameList;
+
+                (eventBoardGamesListBox.DataSource as List<BoardGame>).Add(boardGame);
+                List<BoardGame> temp = eventBoardGamesListBox.DataSource as List<BoardGame>;
+                RefreshEventBoardGamesListBox(temp);
+            }
+        }
+
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e) {
+            if (tabControl.SelectedIndex == 3) {
+                eventPlayersDataGridView.DataSource = null;
+                eventBoardGamesDataGridView.DataSource = null;
+                eventPlayersListBox.DataSource = null;
+                eventBoardGamesListBox.DataSource = null;
+
+                eventComboBox.DataSource = new BindingSource(BoardGameEventCollection.Instance().BoardgameEvents, null);
+                eventComboBox.DisplayMember = "EventNameDate";
+                eventComboBox.ValueMember = "Id";                
+            }
+        }
+
+        private void RefreshEventPlayersListBox(List<Player> dataSource) {
+            eventPlayersListBox.DataSource = null;
+            eventPlayersListBox.DataSource = dataSource;
+            eventPlayersListBox.DisplayMember = "FullName";
+            eventPlayersListBox.ValueMember = "Id";
+        }
+
+        private void RefreshEventBoardGamesListBox(List<BoardGame> dataSource) {
+            eventBoardGamesListBox.DataSource = null;
+            eventBoardGamesListBox.DataSource = dataSource;
+            eventBoardGamesListBox.DisplayMember = "Name";
+            eventBoardGamesListBox.ValueMember = "Id";
         }
     }
 }
