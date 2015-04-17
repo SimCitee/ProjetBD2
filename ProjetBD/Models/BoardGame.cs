@@ -95,6 +95,7 @@ namespace ProjetBD.Models {
                 command.ExecuteNonQuery();
 
                 output = (OracleDecimal)command.Parameters["output"].Value;
+                this.Id = output.ToInt32();
 
                 dbHelper.LogTransaction(LogActions.Undo, String.Format(QRY_DELETE, output.ToInt32()));
                 dbHelper.LogTransaction(LogActions.Redo, String.Format(QRY_INSERT, Name, MinimumPlayerNumber, MaximumPlayerNumber, MinimumAge, AverageGameTime));

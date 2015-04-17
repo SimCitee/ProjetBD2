@@ -21,10 +21,15 @@ namespace ProjetBD
         private const String DBCONFIG = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=NEPTUNE.UQTR.CA)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SID=COURSBD))); User Id=SMI1002_39;Password=53uzct45;";
         DatabaseHelper dbHelper;
 
+        private const String QRY_VIEW_UPCOMING_EVENTS = "SELECT * FROM V_UPCOMING_EVENTS";
+        private const String QRY_VIEW_ADULT_EVENTS = "SELECT * FROM V_ADULT_EVENTS";
+
         public MainWindow() {
             InitializeComponent();
 
             dbHelper = new DatabaseHelper(DBCONFIG);
+
+            statusLabel.Text = "Connecté";
 
             BoardGameEventCollection.Instance().LoadBoardEventsFromDatabase(dbHelper.Connection);
             BoardGameCollection.Instance().LoadBoardGamesFromDatabase(dbHelper.Connection);
@@ -44,6 +49,8 @@ namespace ProjetBD
             eventsDataGridView.AutoGenerateColumns = false;
             boardGamesDataGridView.AutoGenerateColumns = false;
             playersDataGridView.AutoGenerateColumns = false;
+            eventForAdultDataGridView.AutoGenerateColumns = false;
+            upcomingEventsDataGridView.AutoGenerateColumns = false;
 
             eventsDataGridView.DataSource = BoardGameEventCollection.Instance().BoardgameEvents;
             boardGamesDataGridView.DataSource = BoardGameCollection.Instance().BoardGames;
@@ -254,16 +261,18 @@ namespace ProjetBD
         }
 
         private void eventPlayersAddBtn_Click(object sender, EventArgs e) {
-            BoardGameEvent selectedEvent = eventComboBox.SelectedItem as BoardGameEvent;
-            Player player = eventPlayersListBox.SelectedItem as Player;
+            if (eventPlayersListBox.SelectedIndex > -1) {
+                BoardGameEvent selectedEvent = eventComboBox.SelectedItem as BoardGameEvent;
+                Player player = eventPlayersListBox.SelectedItem as Player;
 
-            selectedEvent.AddPlayerToPlayerList(player, dbHelper.Connection);
-            eventPlayersDataGridView.DataSource = null;
-            eventPlayersDataGridView.DataSource = selectedEvent.PlayerList;
+                selectedEvent.AddPlayerToPlayerList(player, dbHelper.Connection);
+                eventPlayersDataGridView.DataSource = null;
+                eventPlayersDataGridView.DataSource = selectedEvent.PlayerList;
 
-            (eventPlayersListBox.DataSource as List<Player>).Remove(player);
-            List<Player> temp = eventPlayersListBox.DataSource as List<Player>;
-            RefreshEventPlayersListBox(temp);
+                (eventPlayersListBox.DataSource as List<Player>).Remove(player);
+                List<Player> temp = eventPlayersListBox.DataSource as List<Player>;
+                RefreshEventPlayersListBox(temp);
+            }
         }
 
         private void eventPlayersRemoveBtn_Click(object sender, EventArgs e) {
@@ -282,16 +291,18 @@ namespace ProjetBD
         }
 
         private void eventBoardGamesAddBtn_Click(object sender, EventArgs e) {
-            BoardGameEvent selectedEvent = eventComboBox.SelectedItem as BoardGameEvent;
-            BoardGame boardGame = eventBoardGamesListBox.SelectedItem as BoardGame;
+            if (eventBoardGamesListBox.SelectedIndex > -1) {
+                BoardGameEvent selectedEvent = eventComboBox.SelectedItem as BoardGameEvent;
+                BoardGame boardGame = eventBoardGamesListBox.SelectedItem as BoardGame;
 
-            selectedEvent.AddBoardGameToBoardGameList(boardGame, dbHelper.Connection);
-            eventBoardGamesDataGridView.DataSource = null;
-            eventBoardGamesDataGridView.DataSource = selectedEvent.BoardGameList;
+                selectedEvent.AddBoardGameToBoardGameList(boardGame, dbHelper.Connection);
+                eventBoardGamesDataGridView.DataSource = null;
+                eventBoardGamesDataGridView.DataSource = selectedEvent.BoardGameList;
 
-            (eventBoardGamesListBox.DataSource as List<BoardGame>).Remove(boardGame);
-            List<BoardGame> temp = eventBoardGamesListBox.DataSource as List<BoardGame>;
-            RefreshEventBoardGamesListBox(temp);
+                (eventBoardGamesListBox.DataSource as List<BoardGame>).Remove(boardGame);
+                List<BoardGame> temp = eventBoardGamesListBox.DataSource as List<BoardGame>;
+                RefreshEventBoardGamesListBox(temp);
+            }
         }
 
         private void eventBoardGamesRemoveBtn_Click(object sender, EventArgs e) {
@@ -320,6 +331,42 @@ namespace ProjetBD
                 eventComboBox.DisplayMember = "EventNameDate";
                 eventComboBox.ValueMember = "Id";                
             }
+            else if (tabControl.SelectedIndex == 4) {
+                try {
+                    dbHelper.Connection.Open();
+                    OracleCommand command =  dbHelper.Connection.CreateCommand();
+                    command.CommandText = QRY_VIEW_UPCOMING_EVENTS;
+                    OracleDataReader reader = command.ExecuteReader();
+
+                    DataTable upcomingEventDataTable = new DataTable();
+                    InitViewDataTable(upcomingEventDataTable);
+                    
+                    while (reader.Read()) {
+                        upcomingEventDataTable.Rows.Add(reader["NAME"].ToString(), reader["DESCRIPTION"].ToString(), reader["DATESTART"].ToString(), reader["BOARDGAMENAME"].ToString(), reader["MINIMUM_PLAYER_NUMBER"].ToString(), reader["MAXIMUM_PLAYER_NUMBER"].ToString(), reader["MINIMUM_AGE"].ToString(), reader["AVERAGE_GAME_TIME"].ToString());
+                    }
+
+                    command.CommandText = QRY_VIEW_ADULT_EVENTS;
+                    reader = command.ExecuteReader();
+
+                    DataTable adultEventDataTable = new DataTable();
+                    InitViewDataTable(adultEventDataTable);
+
+                    while (reader.Read()) {
+                        adultEventDataTable.Rows.Add(reader["EVENTNAME"].ToString(), reader["DESCRIPTION"].ToString(), reader["DATESTART"].ToString(), reader["NAME"].ToString(), reader["MINIMUM_PLAYER_NUMBER"].ToString(), reader["MAXIMUM_PLAYER_NUMBER"].ToString(), reader["MINIMUM_AGE"].ToString(), reader["AVERAGE_GAME_TIME"].ToString());
+                    }
+
+                    upcomingEventsDataGridView.DataSource = upcomingEventDataTable;
+                    eventForAdultDataGridView.DataSource = adultEventDataTable;
+                }
+                catch (OracleException ex) {
+                    throw ex;
+                }
+                finally {
+                    if (dbHelper.Connection != null) {
+                        dbHelper.Connection.Close();
+                    }
+                }
+            } 
         }
 
         private void RefreshEventPlayersListBox(List<Player> dataSource) {
@@ -334,6 +381,17 @@ namespace ProjetBD
             eventBoardGamesListBox.DataSource = dataSource;
             eventBoardGamesListBox.DisplayMember = "Name";
             eventBoardGamesListBox.ValueMember = "Id";
+        }
+
+        private void InitViewDataTable(DataTable table) {
+            table.Columns.Add("EventName");
+            table.Columns.Add("Description");
+            table.Columns.Add("DateStart");
+            table.Columns.Add("BoardGameName");
+            table.Columns.Add("MinimumPlayerNumber");
+            table.Columns.Add("MaximumPlayerNumber");
+            table.Columns.Add("MinimumAge");
+            table.Columns.Add("AverageGameTime");
         }
     }
 }

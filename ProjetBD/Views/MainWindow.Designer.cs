@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.eventsTabPage = new System.Windows.Forms.TabPage();
             this.btnAddEvent = new System.Windows.Forms.Button();
@@ -74,8 +75,18 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.eventForAdultDataGridView = new System.Windows.Forms.DataGridView();
             this.upcomingEventsDataGridView = new System.Windows.Forms.DataGridView();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.eventName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.eventDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.eventDatestart = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.eventBoardGameName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adultMinPlayer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adultMaxPlayer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adultMinAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adultAverage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.upcomingEventsId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.upcomingEventsEventName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.upcomingEventsDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -85,8 +96,6 @@
             this.upcomingEventsMaximumPlayer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.upcomingEventsMinimumAge = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.upcomingEventsAverageGameTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControl.SuspendLayout();
             this.eventsTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.eventsDataGridView)).BeginInit();
@@ -98,7 +107,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.eventBoardGamesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eventPlayersDataGridView)).BeginInit();
             this.tabPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eventForAdultDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.upcomingEventsDataGridView)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -191,9 +200,9 @@
             // date
             // 
             this.date.DataPropertyName = "Datestart";
-            dataGridViewCellStyle3.Format = "D";
-            dataGridViewCellStyle3.NullValue = null;
-            this.date.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Format = "D";
+            dataGridViewCellStyle1.NullValue = null;
+            this.date.DefaultCellStyle = dataGridViewCellStyle1;
             this.date.HeaderText = "Date";
             this.date.Name = "date";
             // 
@@ -519,7 +528,7 @@
             // 
             this.tabPage4.Controls.Add(this.label3);
             this.tabPage4.Controls.Add(this.label2);
-            this.tabPage4.Controls.Add(this.dataGridView2);
+            this.tabPage4.Controls.Add(this.eventForAdultDataGridView);
             this.tabPage4.Controls.Add(this.upcomingEventsDataGridView);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
@@ -531,11 +540,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 205);
+            this.label3.Location = new System.Drawing.Point(5, 282);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(126, 13);
+            this.label3.Size = new System.Drawing.Size(166, 13);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Jeux de table pour adulte";
+            this.label3.Text = "Événements réservés aux adultes";
             // 
             // label2
             // 
@@ -546,16 +555,33 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Événements à venir";
             // 
-            // dataGridView2
+            // eventForAdultDataGridView
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(8, 221);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(912, 150);
-            this.dataGridView2.TabIndex = 1;
+            this.eventForAdultDataGridView.AllowUserToAddRows = false;
+            this.eventForAdultDataGridView.AllowUserToDeleteRows = false;
+            this.eventForAdultDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.eventForAdultDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.eventForAdultDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.eventName,
+            this.eventDesc,
+            this.eventDatestart,
+            this.eventBoardGameName,
+            this.adultMinPlayer,
+            this.adultMaxPlayer,
+            this.adultMinAge,
+            this.adultAverage});
+            this.eventForAdultDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.eventForAdultDataGridView.Location = new System.Drawing.Point(8, 298);
+            this.eventForAdultDataGridView.Name = "eventForAdultDataGridView";
+            this.eventForAdultDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.eventForAdultDataGridView.Size = new System.Drawing.Size(912, 205);
+            this.eventForAdultDataGridView.TabIndex = 1;
             // 
             // upcomingEventsDataGridView
             // 
+            this.upcomingEventsDataGridView.AllowUserToAddRows = false;
+            this.upcomingEventsDataGridView.AllowUserToDeleteRows = false;
+            this.upcomingEventsDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.upcomingEventsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.upcomingEventsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.upcomingEventsId,
@@ -567,10 +593,75 @@
             this.upcomingEventsMaximumPlayer,
             this.upcomingEventsMinimumAge,
             this.upcomingEventsAverageGameTime});
+            this.upcomingEventsDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.upcomingEventsDataGridView.Location = new System.Drawing.Point(8, 31);
             this.upcomingEventsDataGridView.Name = "upcomingEventsDataGridView";
-            this.upcomingEventsDataGridView.Size = new System.Drawing.Size(912, 150);
+            this.upcomingEventsDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.upcomingEventsDataGridView.Size = new System.Drawing.Size(912, 207);
             this.upcomingEventsDataGridView.TabIndex = 0;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 528);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(936, 22);
+            this.statusStrip1.TabIndex = 1;
+            // 
+            // statusLabel
+            // 
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(84, 17);
+            this.statusLabel.Text = "EtatConnexion";
+            // 
+            // eventName
+            // 
+            this.eventName.DataPropertyName = "EVENTNAME";
+            this.eventName.HeaderText = "Nom de l\'événement";
+            this.eventName.Name = "eventName";
+            // 
+            // eventDesc
+            // 
+            this.eventDesc.DataPropertyName = "DESCRIPTION";
+            this.eventDesc.HeaderText = "Description";
+            this.eventDesc.Name = "eventDesc";
+            // 
+            // eventDatestart
+            // 
+            this.eventDatestart.DataPropertyName = "DATESTART";
+            this.eventDatestart.HeaderText = "Date de début";
+            this.eventDatestart.Name = "eventDatestart";
+            // 
+            // eventBoardGameName
+            // 
+            this.eventBoardGameName.DataPropertyName = "BoardGameName";
+            this.eventBoardGameName.HeaderText = "Nom du jeu de table";
+            this.eventBoardGameName.Name = "eventBoardGameName";
+            // 
+            // adultMinPlayer
+            // 
+            this.adultMinPlayer.DataPropertyName = "MinimumPlayerNumber";
+            this.adultMinPlayer.HeaderText = "Nombre minimum de joueur";
+            this.adultMinPlayer.Name = "adultMinPlayer";
+            // 
+            // adultMaxPlayer
+            // 
+            this.adultMaxPlayer.DataPropertyName = "MaximumPlayerNumber";
+            this.adultMaxPlayer.HeaderText = "Nombre maximum de joueur";
+            this.adultMaxPlayer.Name = "adultMaxPlayer";
+            // 
+            // adultMinAge
+            // 
+            this.adultMinAge.DataPropertyName = "MinimumAge";
+            this.adultMinAge.HeaderText = "Âge minimum";
+            this.adultMinAge.Name = "adultMinAge";
+            // 
+            // adultAverage
+            // 
+            this.adultAverage.DataPropertyName = "AverageGameTime";
+            this.adultAverage.HeaderText = "Durée moyenne (minutes)";
+            this.adultAverage.Name = "adultAverage";
             // 
             // upcomingEventsId
             // 
@@ -580,58 +671,54 @@
             // 
             // upcomingEventsEventName
             // 
+            this.upcomingEventsEventName.DataPropertyName = "EventName";
             this.upcomingEventsEventName.HeaderText = "Nom de l\'événement";
             this.upcomingEventsEventName.Name = "upcomingEventsEventName";
             // 
             // upcomingEventsDescription
             // 
+            this.upcomingEventsDescription.DataPropertyName = "Description";
             this.upcomingEventsDescription.HeaderText = "Description";
             this.upcomingEventsDescription.Name = "upcomingEventsDescription";
             // 
             // upcomingEventsDateStart
             // 
+            this.upcomingEventsDateStart.DataPropertyName = "DateStart";
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.upcomingEventsDateStart.DefaultCellStyle = dataGridViewCellStyle2;
             this.upcomingEventsDateStart.HeaderText = "Date de début";
             this.upcomingEventsDateStart.Name = "upcomingEventsDateStart";
             // 
             // upcomingEventsBoardGameName
             // 
+            this.upcomingEventsBoardGameName.DataPropertyName = "BoardGameName";
             this.upcomingEventsBoardGameName.HeaderText = "Nom du jeu de table";
             this.upcomingEventsBoardGameName.Name = "upcomingEventsBoardGameName";
             // 
             // upcomingEventsMinimumPlayer
             // 
+            this.upcomingEventsMinimumPlayer.DataPropertyName = "MinimumPlayerNumber";
             this.upcomingEventsMinimumPlayer.HeaderText = "Nombre minimum de joueur";
             this.upcomingEventsMinimumPlayer.Name = "upcomingEventsMinimumPlayer";
             // 
             // upcomingEventsMaximumPlayer
             // 
+            this.upcomingEventsMaximumPlayer.DataPropertyName = "MaximumPlayerNumber";
             this.upcomingEventsMaximumPlayer.HeaderText = "Nombre maximum de joueur";
             this.upcomingEventsMaximumPlayer.Name = "upcomingEventsMaximumPlayer";
             // 
             // upcomingEventsMinimumAge
             // 
+            this.upcomingEventsMinimumAge.DataPropertyName = "MinimumAge";
             this.upcomingEventsMinimumAge.HeaderText = "Âge minimum";
             this.upcomingEventsMinimumAge.Name = "upcomingEventsMinimumAge";
             // 
             // upcomingEventsAverageGameTime
             // 
-            this.upcomingEventsAverageGameTime.HeaderText = "Temps moyen";
+            this.upcomingEventsAverageGameTime.DataPropertyName = "AverageGameTime";
+            this.upcomingEventsAverageGameTime.HeaderText = "Durée moyenne (minutes)";
             this.upcomingEventsAverageGameTime.Name = "upcomingEventsAverageGameTime";
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 528);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(936, 22);
-            this.statusStrip1.TabIndex = 1;
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(84, 17);
-            this.toolStripStatusLabel1.Text = "EtatConnexion";
             // 
             // MainWindow
             // 
@@ -656,7 +743,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.eventPlayersDataGridView)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.eventForAdultDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.upcomingEventsDataGridView)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -678,7 +765,7 @@
         private System.Windows.Forms.DataGridView playersDataGridView;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private System.Windows.Forms.Button btnAddPlayer;
         private System.Windows.Forms.Button btnDeletePlayer;
         private System.Windows.Forms.Button btnAddBoardGame;
@@ -714,8 +801,16 @@
         private System.Windows.Forms.ListBox eventPlayersListBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView eventForAdultDataGridView;
         private System.Windows.Forms.DataGridView upcomingEventsDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn eventName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn eventDesc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn eventDatestart;
+        private System.Windows.Forms.DataGridViewTextBoxColumn eventBoardGameName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn adultMinPlayer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn adultMaxPlayer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn adultMinAge;
+        private System.Windows.Forms.DataGridViewTextBoxColumn adultAverage;
         private System.Windows.Forms.DataGridViewTextBoxColumn upcomingEventsId;
         private System.Windows.Forms.DataGridViewTextBoxColumn upcomingEventsEventName;
         private System.Windows.Forms.DataGridViewTextBoxColumn upcomingEventsDescription;
